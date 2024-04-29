@@ -1,0 +1,115 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model blogs {
+  id         BigInt   @id @default(autoincrement())
+  title      String   @db.VarChar(255)
+  body       String
+  author     String?  @db.VarChar(255)
+  created_at DateTime @db.Date
+}
+
+model city {
+  id              BigInt            @id  @default(autoincrement())
+  name            String            @db.VarChar(255)
+  donation_center donation_center[]
+  donation_events donation_events[]
+}
+
+model donation_center {
+  id                BigInt              @id  @default(autoincrement())
+  city_id           BigInt
+  name              String              @db.VarChar(255)
+  image             String?             @db.VarChar(255)
+  city              city                @relation(fields: [city_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "donation_center_city_id_foreign")
+  donation_schedule donation_schedule[]
+  staff             staff[]
+}
+
+model donation_events {
+  id           BigInt         @id  @default(autoincrement())
+  location     String         @db.VarChar(255)
+  city_id      BigInt
+  date         DateTime       @db.Date
+  organizer    String         @db.VarChar(255)
+  city         city           @relation(fields: [city_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "donation_events_city_id_foreign")
+  participants participants[]
+}
+
+model donation_schedule {
+  id              BigInt          @id  @default(autoincrement())
+  user_id         BigInt
+  center_id       BigInt
+  date            DateTime        @db.Date
+  is_finished     Boolean         @default(false)
+  is_valid        Boolean         @default(true)
+  created_at      DateTime        @db.Date
+  donation_center donation_center @relation(fields: [center_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "donation_schedule_center_id_foreign")
+  user            user            @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "donation_schedule_user_id_foreign")
+}
+
+model participants {
+  id              BigInt          @id  @default(autoincrement())
+  user_id         BigInt
+  event_id        BigInt
+  donation_events donation_events @relation(fields: [event_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "participants_event_id_foreign")
+  user            user            @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "participants_user_id_foreign")
+}
+
+model rewards {
+  id              BigInt         @id  @default(autoincrement())
+  name            String         @db.VarChar(255)
+  sponsor_id      BigInt
+  required_points Int
+  description     String
+  sponsors        sponsors       @relation(fields: [sponsor_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "rewards_sponsor_id_foreign")
+  user_rewards    user_rewards[]
+}
+
+model sponsors {
+  id          BigInt    @id  @default(autoincrement())
+  name        String    @db.VarChar(255)
+  image       String?   @db.VarChar(255)
+  description String?
+  rewards     rewards[]
+}
+
+model staff {
+  id              BigInt          @id  @default(autoincrement())
+  name            String          @db.VarChar(255)
+  surname         String          @db.VarChar(255)
+  center_id       BigInt
+  email           String          @unique(map: "staff_email_unique") @db.VarChar(255)
+  donation_center donation_center @relation(fields: [center_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "staff_center_id_foreign")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model user {
+  id                BigInt              @id     @default(autoincrement())
+  name              String              @db.VarChar(255)
+  surname           String              @db.VarChar(255)
+  age               Int
+  gender            String              @db.VarChar(255)
+  location          String              @db.VarChar(255)
+  password          String              @db.VarChar(255)
+  email             String              @unique(map: "user_email_unique") @db.VarChar(255)
+  blood_type        String?             @db.VarChar(255)
+  donation_schedule donation_schedule[]
+  participants      participants[]
+  user_rewards      user_rewards[]
+}
+
+model user_rewards {
+  id         BigInt   @id       @default(autoincrement())
+  user_id    BigInt
+  reward_id  BigInt
+  created_at DateTime @db.Date
+  rewards    rewards  @relation(fields: [reward_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_rewards_reward_id_foreign")
+  user       user     @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_rewards_user_id_foreign")
+}
