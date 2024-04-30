@@ -1,36 +1,32 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { IsBoolean, IsNumber, IsString } from 'class-validator';
 
-export class UserEntity {
+export class RegisterUserDto {
   @ApiProperty()
-  id: number;
-
-  @ApiProperty()
+  @IsString()
   email: string;
 
   @ApiProperty()
+  @IsString()
   password: string;
 
   @ApiProperty()
+  @IsString()
   name: string;
 
   @ApiProperty()
+  @IsString()
   surname: string;
 
   @ApiProperty()
+  @IsNumber()
   age: number;
 
   @ApiProperty()
-  gender: string;
-
-  @ApiProperty()
+  @IsString()
   location: string;
 
   @ApiProperty()
-  blood_type?: string;
-
-  @ApiProperty()
-  createdAt: Date;
-
-  @ApiProperty()
-  updatedAt: Date;
+  @IsString()
+  gender: string;
 }
