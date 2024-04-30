@@ -8,7 +8,7 @@ datasource db {
 }
 
 model blogs {
-  id         BigInt   @id @default(autoincrement())
+  id         Int   @id @default(autoincrement())
   title      String   @db.VarChar(255)
   body       String
   author     String?  @db.VarChar(255)
@@ -16,15 +16,15 @@ model blogs {
 }
 
 model city {
-  id              BigInt            @id  @default(autoincrement())
+  id              Int            @id  @default(autoincrement())
   name            String            @db.VarChar(255)
   donation_center donation_center[]
   donation_events donation_events[]
 }
 
 model donation_center {
-  id                BigInt              @id  @default(autoincrement())
-  city_id           BigInt
+  id                Int              @id  @default(autoincrement())
+  city_id           Int
   name              String              @db.VarChar(255)
   image             String?             @db.VarChar(255)
   city              city                @relation(fields: [city_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "donation_center_city_id_foreign")
@@ -33,9 +33,9 @@ model donation_center {
 }
 
 model donation_events {
-  id           BigInt         @id  @default(autoincrement())
+  id           Int         @id  @default(autoincrement())
   location     String         @db.VarChar(255)
-  city_id      BigInt
+  city_id      Int
   date         DateTime       @db.Date
   organizer    String         @db.VarChar(255)
   city         city           @relation(fields: [city_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "donation_events_city_id_foreign")
@@ -43,9 +43,9 @@ model donation_events {
 }
 
 model donation_schedule {
-  id              BigInt          @id  @default(autoincrement())
-  user_id         BigInt
-  center_id       BigInt
+  id              Int          @id  @default(autoincrement())
+  user_id         Int
+  center_id       Int
   date            DateTime        @db.Date
   is_finished     Boolean         @default(false)
   is_valid        Boolean         @default(true)
@@ -55,17 +55,17 @@ model donation_schedule {
 }
 
 model participants {
-  id              BigInt          @id  @default(autoincrement())
-  user_id         BigInt
-  event_id        BigInt
+  id              Int          @id  @default(autoincrement())
+  user_id         Int
+  event_id        Int
   donation_events donation_events @relation(fields: [event_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "participants_event_id_foreign")
   user            user            @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "participants_user_id_foreign")
 }
 
 model rewards {
-  id              BigInt         @id  @default(autoincrement())
+  id              Int         @id  @default(autoincrement())
   name            String         @db.VarChar(255)
-  sponsor_id      BigInt
+  sponsor_id      Int
   required_points Int
   description     String
   sponsors        sponsors       @relation(fields: [sponsor_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "rewards_sponsor_id_foreign")
@@ -73,7 +73,7 @@ model rewards {
 }
 
 model sponsors {
-  id          BigInt    @id  @default(autoincrement())
+  id          Int    @id  @default(autoincrement())
   name        String    @db.VarChar(255)
   image       String?   @db.VarChar(255)
   description String?
@@ -81,17 +81,17 @@ model sponsors {
 }
 
 model staff {
-  id              BigInt          @id  @default(autoincrement())
+  id              Int          @id  @default(autoincrement())
   name            String          @db.VarChar(255)
   surname         String          @db.VarChar(255)
-  center_id       BigInt
+  center_id       Int
   email           String          @unique(map: "staff_email_unique") @db.VarChar(255)
   donation_center donation_center @relation(fields: [center_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "staff_center_id_foreign")
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model user {
-  id                BigInt              @id     @default(autoincrement())
+  id                Int              @id     @default(autoincrement())
   name              String              @db.VarChar(255)
   surname           String              @db.VarChar(255)
   age               Int
@@ -100,15 +100,18 @@ model user {
   password          String              @db.VarChar(255)
   email             String              @unique(map: "user_email_unique") @db.VarChar(255)
   blood_type        String?             @db.VarChar(255)
+  is_admin          Boolean             @default(false)
   donation_schedule donation_schedule[]
   participants      participants[]
   user_rewards      user_rewards[]
+  created_at        DateTime            @default(now())
+  updated_at        DateTime            @updatedAt
 }
 
 model user_rewards {
-  id         BigInt   @id       @default(autoincrement())
-  user_id    BigInt
-  reward_id  BigInt
+  id         Int   @id       @default(autoincrement())
+  user_id    Int
+  reward_id  Int
   created_at DateTime @db.Date
   rewards    rewards  @relation(fields: [reward_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_rewards_reward_id_foreign")
   user       user     @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_rewards_user_id_foreign")
