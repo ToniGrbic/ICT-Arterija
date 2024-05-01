@@ -26,7 +26,6 @@ artifacts
 .turbo
 .vercel
 .DS_Store
-.env
 vendor/
 data
 *.log
