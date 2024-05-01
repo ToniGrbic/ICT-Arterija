@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsBoolean, IsNumber, IsString } from 'class-validator';
+import { IsNumber, IsString } from 'class-validator';
+import { Gender, Role } from '@prisma/client';
 
 export class RegisterUserDto {
   @ApiProperty()
@@ -28,5 +29,9 @@ export class RegisterUserDto {
 
   @ApiProperty()
   @IsString()
-  gender: string;
+  gender: Gender;
+
+  @ApiProperty()
+  @IsString()
+  role: Role;
 }

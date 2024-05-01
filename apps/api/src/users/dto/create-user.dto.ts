@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsString } from 'class-validator';
-import { isNull } from 'util';
+import { IsDate, IsNumber, IsString } from 'class-validator';
+import { BloodTypes, Role, Gender } from '@prisma/client';
 
 export class CreateUserDto {
   @ApiProperty()
@@ -29,9 +29,21 @@ export class CreateUserDto {
 
   @ApiProperty()
   @IsString()
-  gender: string;
+  gender: Gender;
 
   @ApiProperty({ nullable: true })
   @IsString()
-  blood_type?: string;
+  blood_type?: BloodTypes;
+
+  @ApiProperty()
+  @IsString()
+  can_donate: boolean;
+
+  @ApiProperty()
+  @IsString()
+  role: Role;
+
+  @ApiProperty({ nullable: true })
+  @IsDate()
+  next_donation_date?: Date;
 }
