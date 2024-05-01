@@ -3,6 +3,7 @@
     "@nestjs/mapped-types": "*"
   },
   "devDependencies": {
+    "@capacitor/cli": "^6.0.0",
     "turbo": "^1.13.3"
   },
   "scripts": {
@@ -12,5 +13,10 @@
   },
   "workspaces": [
     "apps/*"
-  ]
+  ],
+  "dependencies": {
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/core": "^6.0.0",
+    "@capacitor/ios": "^6.0.0"
+  }
 }
