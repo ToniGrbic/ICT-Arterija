@@ -18,11 +18,13 @@ import {
   ApiCreatedResponse,
   ApiOkResponse,
   ApiBearerAuth,
+  ApiTags,
 } from '@nestjs/swagger';
 import { AdminAuthGuard } from './guards/admin-auth.guard';
 import { StaffOrAdminAuthGuard } from './guards/staff-or-admin-auth.guard';
 
 @Controller('users')
+@ApiTags('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
