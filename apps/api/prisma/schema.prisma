@@ -1,0 +1,134 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  User
+  Staff
+  Admin
+}
+
+enum BloodTypes {
+  A_POSITIVE
+  A_NEGATIVE
+  B_POSITIVE
+  B_NEGATIVE
+  AB_POSITIVE
+  AB_NEGATIVE
+  O_POSITIVE
+  O_NEGATIVE
+}
+
+enum Gender {
+  Male
+  Female
+} 
+
+model blogs {
+  id              Int      @id @default(autoincrement())
+  title           String   @db.VarChar(255)
+  body            String
+  author          String?  @db.VarChar(255)
+  main_image      String?  @db.VarChar(255)
+  secondary_image String?  @db.VarChar(255)
+  created_at      DateTime @default(now())
+}
+
+model participants {
+  id              Int    @id  @default(autoincrement())
+  user_id         Int
+  event_id        Int
+  donation_events events @relation(fields: [event_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "participants_event_id_foreign")
+  user            users  @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "participants_user_id_foreign")
+}
+
+model rewards {
+  id              Int            @id @default(autoincrement())
+  name            String         @db.VarChar(255)
+  sponsor_id      Int
+  required_points Int
+  description     String
+  sponsors        sponsors       @relation(fields: [sponsor_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "rewards_sponsor_id_foreign")
+  user_rewards    user_rewards[]
+}
+
+model sponsors {
+  id          Int       @id @default(autoincrement())
+  name        String    @db.VarChar(255)
+  image       String?   @db.VarChar(255)
+  description String?
+  rewards     rewards[]
+}
+
+model user_rewards {
+  id         Int      @id @default(autoincrement())
+  user_id    Int
+  reward_id  Int
+  created_at DateTime @default(now())
+  rewards    rewards  @relation(fields: [reward_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_rewards_reward_id_foreign")
+  user       users    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_rewards_user_id_foreign")
+}
+
+model events {
+  id           Int            @id @default(autoincrement())
+  location     String         @db.VarChar(255)
+  city_id      Int
+  date         DateTime       @db.Date
+  organizer    String         @db.VarChar(255)
+  city         cities         @relation(fields: [city_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "events_city_id_foreign")
+  participants participants[]
+}
+
+model centers {
+  id        Int         @id @default(autoincrement())
+  city_id   Int
+  name      String      @db.VarChar(255)
+  image     String?     @db.VarChar(255)
+  cities    cities      @relation(fields: [city_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "centers_city_id_foreign")
+  schedules schedules[]
+  users     users[]
+}
+
+model cities {
+  id      Int       @id @default(autoincrement())
+  name    String    @db.VarChar(255)
+  centers centers[]
+  events  events[]
+}
+
+model schedules {
+  id          Int      @id @default(autoincrement())
+  user_id     Int
+  center_id   Int
+  date        DateTime @db.Date
+  is_finished Boolean  @default(false)
+  is_valid    Boolean  @default(true)
+  created_at  DateTime @default(now())
+  centers     centers  @relation(fields: [center_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "schedules_center_id_foreign")
+  users       users    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "schedules_user_id_foreign")
+}
+
+model users {
+  id                 Int            @id @default(autoincrement())
+  name               String         @db.VarChar(255)
+  surname            String         @db.VarChar(255)
+  email              String         @unique(map: "users_email_unique") @db.VarChar(255)
+  password           String         @db.VarChar(255)
+  location           String         @db.VarChar(255)
+  age                Int
+  can_donate         Boolean        @default(true)
+  next_donation_date DateTime?      @default(now())
+  gender             Gender        
+  blood_type         BloodTypes?
+  role               Role           @default(User)    
+  center_id          Int?
+  participants       participants[]
+  schedules          schedules[]
+  user_rewards       user_rewards[]
+  centers            centers?       @relation(fields: [center_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "users_center_id_foreign")
+}

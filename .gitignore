@@ -15,6 +15,7 @@ coverage/
 .eslintcache
 *.node
 graph*.html
+.env
 
 # not pnpm
 .pnp.*
@@ -26,7 +27,6 @@ artifacts
 .turbo
 .vercel
 .DS_Store
-.env
 vendor/
 data
 *.log
