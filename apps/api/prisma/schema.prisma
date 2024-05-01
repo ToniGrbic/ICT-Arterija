@@ -30,11 +30,13 @@ enum Gender {
 } 
 
 model blogs {
-  id         Int      @id @default(autoincrement())
-  title      String   @db.VarChar(255)
-  body       String
-  author     String?  @db.VarChar(255)
-  created_at DateTime @default(now())
+  id              Int      @id @default(autoincrement())
+  title           String   @db.VarChar(255)
+  body            String
+  author          String?  @db.VarChar(255)
+  main_image      String?  @db.VarChar(255)
+  secondary_image String?  @db.VarChar(255)
+  created_at      DateTime @default(now())
 }
 
 model participants {
