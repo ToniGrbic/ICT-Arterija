@@ -34,7 +34,7 @@ model blogs {
   title      String   @db.VarChar(255)
   body       String
   author     String?  @db.VarChar(255)
-  created_at DateTime @db.Date
+  created_at DateTime @default(now())
 }
 
 model participants {
@@ -67,7 +67,7 @@ model user_rewards {
   id         Int      @id @default(autoincrement())
   user_id    Int
   reward_id  Int
-  created_at DateTime @db.Date
+  created_at DateTime @default(now())
   rewards    rewards  @relation(fields: [reward_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_rewards_reward_id_foreign")
   user       users    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_rewards_user_id_foreign")
 }
@@ -106,7 +106,7 @@ model schedules {
   date        DateTime @db.Date
   is_finished Boolean  @default(false)
   is_valid    Boolean  @default(true)
-  created_at  DateTime @db.Date
+  created_at  DateTime @default(now())
   centers     centers  @relation(fields: [center_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "schedules_center_id_foreign")
   users       users    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "schedules_user_id_foreign")
 }
@@ -120,7 +120,7 @@ model users {
   location           String         @db.VarChar(255)
   age                Int
   can_donate         Boolean        @default(true)
-  next_donation_date DateTime?      @db.Date 
+  next_donation_date DateTime?      @default(now())
   gender             Gender        
   blood_type         BloodTypes?
   role               Role           @default(User)    
