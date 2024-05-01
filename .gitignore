@@ -15,6 +15,7 @@ coverage/
 .eslintcache
 *.node
 graph*.html
+.env
 
 # not pnpm
 .pnp.*
