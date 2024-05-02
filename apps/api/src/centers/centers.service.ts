@@ -1,26 +1,29 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCenterDto } from './dto/create-center.dto';
 import { UpdateCenterDto } from './dto/update-center.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class CentersService {
+  constructor(private prisma: PrismaService) {}
+
   create(createCenterDto: CreateCenterDto) {
-    return 'This action adds a new center';
+    return this.prisma.centers.create({ data: createCenterDto });
   }
 
   findAll() {
-    return `This action returns all centers`;
+    return this.prisma.centers.findMany();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} center`;
+    return this.prisma.centers.findUnique({ where: { id } });
   }
 
   update(id: number, updateCenterDto: UpdateCenterDto) {
-    return `This action updates a #${id} center`;
+    return this.prisma.centers.update({ data: updateCenterDto, where: { id } });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} center`;
+    return this.prisma.centers.delete({ where: { id } });
   }
 }
