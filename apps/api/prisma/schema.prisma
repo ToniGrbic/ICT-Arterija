@@ -121,9 +121,10 @@ model users {
   password           String         @db.VarChar(255)
   location           String         @db.VarChar(255)
   age                Int
+  points             Int            @default(0)   
   can_donate         Boolean        @default(true)
   next_donation_date DateTime?      @default(now())
-  gender             Gender        
+  gender             Gender
   blood_type         BloodTypes?
   role               Role           @default(User)    
   center_id          Int?
