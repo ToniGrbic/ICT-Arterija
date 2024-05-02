@@ -1,17 +1,14 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class blogEntity {
+export class userRewardsEntity {
   @ApiProperty()
   id: number;
 
   @ApiProperty()
-  title: string;
+  user_id: number;
 
   @ApiProperty()
-  body: string;
-
-  @ApiProperty()
-  author?: string;
+  reward_id: number;
 
   @ApiProperty()
   created_at: Date;
