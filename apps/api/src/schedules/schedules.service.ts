@@ -45,21 +45,16 @@ export class SchedulesService {
       where: { id: schedule_id },
     });
 
-    if (!schedule) {
-      throw new Error('Schedule not found');
+    if (!schedule) throw new Error('Schedule not found');
+    if (schedule.is_finished || !schedule.is_valid) {
+      throw new Error('Schedule is already finished or invalid');
     }
 
     const user = await this.prisma.users.findUnique({
       where: { id: schedule.user_id },
     });
 
-    if (!user) {
-      throw new Error('User not found');
-    }
-
-    if (schedule.is_finished || !schedule.is_valid) {
-      throw new Error('Schedule is already finished or invalid');
-    }
+    if (!user) throw new Error('User not found');
 
     const isExpired =
       Date.parse(schedule.date.toISOString()) < new Date().getTime();
@@ -80,7 +75,6 @@ export class SchedulesService {
       data: { points: user.points + 100 },
       where: { id: user.id },
     });
-
     return updatedSchedule;
   }
 
