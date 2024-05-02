@@ -11,6 +11,8 @@ import { CitiesModule } from './cities/cities.module';
 import { EventsModule } from './events/events.module';
 import { RewardsModule } from './rewards/rewards.module';
 import { SponsorsModule } from './sponsors/sponsors.module';
+import { ParticipantsModule } from './participants/participants.module';
+import { UserRewardsModule } from './user_rewards/user_rewards.module';
 
 @Module({
   imports: [
@@ -25,6 +27,8 @@ import { SponsorsModule } from './sponsors/sponsors.module';
     EventsModule,
     RewardsModule,
     SponsorsModule,
+    ParticipantsModule,
+    UserRewardsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
