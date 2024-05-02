@@ -11,7 +11,7 @@ import { CitiesModule } from './cities/cities.module';
 import { EventsModule } from './events/events.module';
 import { RewardsModule } from './rewards/rewards.module';
 import { SponsorsModule } from './sponsors/sponsors.module';
-
+import { SchedulesModule } from './schedules/schedules.module';
 @Module({
   imports: [
     PrismaModule,
@@ -25,6 +25,7 @@ import { SponsorsModule } from './sponsors/sponsors.module';
     EventsModule,
     RewardsModule,
     SponsorsModule,
+    SchedulesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
