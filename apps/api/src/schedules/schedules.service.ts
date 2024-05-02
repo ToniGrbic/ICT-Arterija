@@ -40,6 +40,12 @@ export class SchedulesService {
     });
   }
 
+  remove(id: number) {
+    return this.prisma.schedules.delete({
+      where: { id },
+    });
+  }
+
   async updateIsFinishedAndUserPoints(schedule_id: number) {
     const schedule = await this.prisma.schedules.findUnique({
       where: { id: schedule_id },
@@ -76,11 +82,5 @@ export class SchedulesService {
       where: { id: user.id },
     });
     return updatedSchedule;
-  }
-
-  remove(id: number) {
-    return this.prisma.schedules.delete({
-      where: { id },
-    });
   }
 }
