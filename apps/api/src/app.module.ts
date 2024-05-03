@@ -12,6 +12,9 @@ import { EventsModule } from './events/events.module';
 import { RewardsModule } from './rewards/rewards.module';
 import { SponsorsModule } from './sponsors/sponsors.module';
 import { SchedulesModule } from './schedules/schedules.module';
+import { ParticipantsModule } from './participants/participants.module';
+import { UserRewardsModule } from './user_rewards/user_rewards.module';
+
 @Module({
   imports: [
     PrismaModule,
@@ -26,6 +29,8 @@ import { SchedulesModule } from './schedules/schedules.module';
     RewardsModule,
     SponsorsModule,
     SchedulesModule,
+    ParticipantsModule,
+    UserRewardsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
