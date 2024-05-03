@@ -80,8 +80,8 @@ export class SchedulesController {
   @Patch('finished/:id')
   @ApiOkResponse({ type: ScheduleEntity })
   @UseGuards(StaffAuthGuard)
-  updateIsFinishedAndUserPoints(@Param('id', ParseIntPipe) id: number) {
-    return this.schedulesService.updateIsFinishedAndUserPoints(id);
+  updateIsFinishedAndUser(@Param('id', ParseIntPipe) id: number) {
+    return this.schedulesService.updateIsFinishedAndUser(id);
   }
 
   @Delete(':id')
@@ -89,5 +89,12 @@ export class SchedulesController {
   @UseGuards(AdminAuthGuard)
   remove(@Param('id', ParseIntPipe) id: number) {
     return this.schedulesService.remove(+id);
+  }
+
+  @Delete('not-valid')
+  @ApiOkResponse({ type: ScheduleEntity })
+  @UseGuards(AdminAuthGuard)
+  removeNotValid() {
+    return this.schedulesService.removeNotValid();
   }
 }
