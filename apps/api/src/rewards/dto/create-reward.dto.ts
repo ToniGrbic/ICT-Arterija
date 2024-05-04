@@ -11,7 +11,7 @@ export class CreateRewardDto {
   sponsor_id: number;
 
   @ApiProperty()
-  @IsString()
+  @IsNumber()
   required_points: number;
 
   @ApiProperty()
