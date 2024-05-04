@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { EventsService } from './events.service';
 import { CreateEventDto } from './dto/create-event.dto';
@@ -36,22 +37,25 @@ export class EventsController {
 
   @Get(':id')
   @ApiOkResponse({ type: eventEntity })
-  findOne(@Param('id') id: string) {
-    return this.eventsService.findOne(+id);
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.eventsService.findOne(id);
   }
 
   @Patch(':id')
   @UseGuards(AdminAuthGuard)
   @ApiBearerAuth()
   @ApiOkResponse({ type: eventEntity })
-  update(@Param('id') id: string, @Body() updateEventDto: UpdateEventDto) {
-    return this.eventsService.update(+id, updateEventDto);
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateEventDto: UpdateEventDto,
+  ) {
+    return this.eventsService.update(id, updateEventDto);
   }
 
   @Delete(':id')
   @UseGuards(AdminAuthGuard)
   @ApiBearerAuth()
-  remove(@Param('id') id: string) {
-    return this.eventsService.remove(+id);
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.eventsService.remove(id);
   }
 }

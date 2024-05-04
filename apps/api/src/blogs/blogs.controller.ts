@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { BlogsService } from './blogs.service';
 import { CreateBlogDto } from './dto/create-blog.dto';
@@ -36,22 +37,25 @@ export class BlogsController {
 
   @Get(':id')
   @ApiOkResponse({ type: blogEntity })
-  findOne(@Param('id') id: string) {
-    return this.blogsService.findOne(+id);
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.blogsService.findOne(id);
   }
 
   @Patch(':id')
   @UseGuards(AdminAuthGuard)
   @ApiBearerAuth()
   @ApiOkResponse({ type: blogEntity })
-  update(@Param('id') id: string, @Body() updateBlogDto: UpdateBlogDto) {
-    return this.blogsService.update(+id, updateBlogDto);
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateBlogDto: UpdateBlogDto,
+  ) {
+    return this.blogsService.update(id, updateBlogDto);
   }
 
   @Delete(':id')
   @UseGuards(AdminAuthGuard)
   @ApiBearerAuth()
-  remove(@Param('id') id: string) {
-    return this.blogsService.remove(+id);
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.blogsService.remove(id);
   }
 }
