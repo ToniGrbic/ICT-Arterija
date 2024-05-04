@@ -19,6 +19,10 @@ export class UserRewardsService {
     return this.prisma.user_rewards.findUnique({ where: { id } });
   }
 
+  findByUser(user_id: number) {
+    return this.prisma.user_rewards.findMany({ where: { user_id } });
+  }
+
   update(id: number, updateUserRewardDto: UpdateUserRewardDto) {
     return this.prisma.user_rewards.update({
       where: { id },
