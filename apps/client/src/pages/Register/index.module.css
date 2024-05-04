@@ -1,0 +1,75 @@
+.registerPage {
+  padding: 1rem;
+  height: 90vh;
+}
+
+.registerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.exitButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.stepsContainer {
+  display: flex;
+  gap: 1rem;
+}
+
+.registerStepsSpan {
+  width: 27px;
+  height: 3px;
+  background-color: #c5c5c5;
+  border-radius: 5rem;
+}
+
+.registerStepsSpanActive {
+  background-color: #f3bc4d;
+}
+
+.registrationButton {
+  position: absolute;
+  bottom: 2rem;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  padding: 0.8rem 0;
+  border-radius: 0.5rem;
+  background-color: #f3bc4d;
+  color: white;
+  border: none;
+}
+
+.stepTitleContainer {
+  margin-top: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.stepTitleContainer h1 {
+  color: #000;
+
+  /* Text/Podnaslov */
+  font-family: "Rethink Sans";
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.3125rem;
+}
+
+.stepLogo {
+  color: white;
+  background-color: #f3bc4d;
+  width: fit-content;
+  border-radius: 5rem;
+  padding: 0 0.3rem;
+}
