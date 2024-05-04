@@ -11,7 +11,7 @@ export class eventEntity {
   city_id: number;
 
   @ApiProperty()
-  date: Date;
+  date: string;
 
   @ApiProperty()
   organizer: string;

@@ -10,9 +10,9 @@ export class CreateEventDto {
   @IsNumber()
   city_id: number;
 
-  @ApiProperty()
-  @IsDate()
-  date: Date;
+  @ApiProperty({ default: new Date().toISOString() })
+  @IsString()
+  date: string;
 
   @ApiProperty()
   @IsString()
