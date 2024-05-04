@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { CitiesService } from './cities.service';
 import { CreateCityDto } from './dto/create-city.dto';
@@ -36,22 +37,25 @@ export class CitiesController {
 
   @Get(':id')
   @ApiOkResponse({ type: cityEntity })
-  findOne(@Param('id') id: string) {
-    return this.citiesService.findOne(+id);
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.citiesService.findOne(id);
   }
 
   @Patch(':id')
   @UseGuards(AdminAuthGuard)
   @ApiBearerAuth()
   @ApiOkResponse({ type: cityEntity })
-  update(@Param('id') id: string, @Body() updateCityDto: UpdateCityDto) {
-    return this.citiesService.update(+id, updateCityDto);
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateCityDto: UpdateCityDto,
+  ) {
+    return this.citiesService.update(id, updateCityDto);
   }
 
   @Delete(':id')
   @UseGuards(AdminAuthGuard)
   @ApiBearerAuth()
-  remove(@Param('id') id: string) {
-    return this.citiesService.remove(+id);
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.citiesService.remove(id);
   }
 }

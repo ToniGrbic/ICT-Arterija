@@ -19,6 +19,14 @@ export class ParticipantsService {
     return this.prisma.participants.findUnique({ where: { id } });
   }
 
+  findByEvent(event_id: number) {
+    return this.prisma.participants.findMany({ where: { event_id } });
+  }
+
+  findByUser(user_id: number) {
+    return this.prisma.participants.findMany({ where: { user_id } });
+  }
+
   update(id: number, updateParticipantDto: UpdateParticipantDto) {
     return this.prisma.participants.update({
       where: { id },

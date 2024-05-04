@@ -2,7 +2,7 @@ import { ExecutionContext, Injectable } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
 @Injectable()
-export class StaffOrAdminAuthGuard extends AuthGuard('jwt') {
+export class StaffAuthGuard extends AuthGuard('jwt') {
   async canActivate(context: ExecutionContext) {
     const baseGuardResult = await super.canActivate(context);
     if (!baseGuardResult) {

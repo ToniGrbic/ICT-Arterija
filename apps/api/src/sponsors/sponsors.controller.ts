@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { SponsorsService } from './sponsors.service';
 import { CreateSponsorDto } from './dto/create-sponsor.dto';
@@ -36,22 +37,25 @@ export class SponsorsController {
 
   @Get(':id')
   @ApiOkResponse({ type: sponsorEntity })
-  findOne(@Param('id') id: string) {
-    return this.sponsorsService.findOne(+id);
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.sponsorsService.findOne(id);
   }
 
   @Patch(':id')
   @ApiBearerAuth()
   @UseGuards(AdminAuthGuard)
   @ApiOkResponse({ type: sponsorEntity })
-  update(@Param('id') id: string, @Body() updateSponsorDto: UpdateSponsorDto) {
-    return this.sponsorsService.update(+id, updateSponsorDto);
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateSponsorDto: UpdateSponsorDto,
+  ) {
+    return this.sponsorsService.update(id, updateSponsorDto);
   }
 
   @Delete(':id')
   @ApiBearerAuth()
   @UseGuards(AdminAuthGuard)
-  remove(@Param('id') id: string) {
-    return this.sponsorsService.remove(+id);
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.sponsorsService.remove(id);
   }
 }

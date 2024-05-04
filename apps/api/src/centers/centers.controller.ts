@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { CentersService } from './centers.service';
 import { CreateCenterDto } from './dto/create-center.dto';
@@ -36,22 +37,25 @@ export class CentersController {
 
   @Get(':id')
   @ApiOkResponse({ type: centerEntity })
-  findOne(@Param('id') id: string) {
-    return this.centersService.findOne(+id);
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.centersService.findOne(id);
   }
 
   @Patch(':id')
   @UseGuards(AdminAuthGuard)
   @ApiBearerAuth()
   @ApiOkResponse({ type: centerEntity })
-  update(@Param('id') id: string, @Body() updateCenterDto: UpdateCenterDto) {
-    return this.centersService.update(+id, updateCenterDto);
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateCenterDto: UpdateCenterDto,
+  ) {
+    return this.centersService.update(id, updateCenterDto);
   }
 
   @Delete(':id')
   @UseGuards(AdminAuthGuard)
   @ApiBearerAuth()
-  remove(@Param('id') id: string) {
-    return this.centersService.remove(+id);
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.centersService.remove(id);
   }
 }
