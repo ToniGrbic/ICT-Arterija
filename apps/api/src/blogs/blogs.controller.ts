@@ -11,12 +11,10 @@ import {
 import { BlogsService } from './blogs.service';
 import { CreateBlogDto } from './dto/create-blog.dto';
 import { UpdateBlogDto } from './dto/update-blog.dto';
-import { ApiTags } from '@nestjs/swagger';
 import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { blogEntity } from './entities/blog.entity';
 import { AdminAuthGuard } from 'src/users/guards/admin-auth.guard';
 
-@ApiTags('blogs')
 @Controller('blogs')
 @ApiTags('Blogs')
 export class BlogsController {
