@@ -22,19 +22,21 @@ const validatePassword = (password) => {
 export default function RegistrationPassword() {
   const { updateStep, updateData } = useRegistration();
   const [password, setPassword] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [isPasswordValid, setIsPasswordValid] = useState(true);
   const [validationMessage, setValidationMessage] = useState("");
-
-  const handlePasswordChange = (event) => {
-    const newPassword = event.target.value;
-    setPassword(newPassword);
-  };
+  const [isPasswordConfirmationValid, setIsPasswordConfirmationValid] =
+    useState(true);
 
   const handlePasswordRegistration = () => {
     const validation = validatePassword(password);
     if (validation !== true) {
       setIsPasswordValid(false);
       setValidationMessage(validation);
+      return;
+    }
+    if (password !== passwordConfirmation) {
+      setIsPasswordConfirmationValid(false);
       return;
     }
     updateData(password, "password");
@@ -52,11 +54,24 @@ export default function RegistrationPassword() {
         type="password"
         placeholder="Zaporka"
         value={password}
-        onChange={handlePasswordChange}
+        onChange={(event) => setPassword(event.target.value)}
         className={`${classes.passwordInput} ${!isPasswordValid ? classes.registrationInputInvalid : ""}`}
       />
       {!isPasswordValid && (
         <p className={classes.errorMessage}>{validationMessage}</p>
+      )}
+      <h2>Potvrdite zaporku</h2>
+      <input
+        type="password"
+        placeholder="Potvrdi zaporku"
+        value={passwordConfirmation}
+        onChange={(event) => setPasswordConfirmation(event.target.value)}
+        className={`${classes.passwordInput} ${!isPasswordConfirmationValid ? classes.registrationInputInvalid : ""}`}
+      />
+      {!isPasswordConfirmationValid && (
+        <p className={classes.errorMessage}>
+          Potvrda zaporke nije jednaka zaporki.
+        </p>
       )}
       <button
         className={classes.registrationButton}
