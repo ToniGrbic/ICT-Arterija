@@ -1,6 +1,7 @@
 .menu-navigation-list {
   display: flex;
   justify-content: space-around;
+  gap: 3rem;
   list-style: none;
   padding-left: 0;
 }
@@ -10,8 +11,8 @@
   background: #e03943;
   position: fixed;
   bottom: 10px;
-  right: 10px;
-  left: 10px;
+  right: 35px;
+  left: 15px;
   /* Sjena/Nav */
   box-shadow: 0px 1px 32px 0px rgba(224, 57, 67, 0.4);
 }

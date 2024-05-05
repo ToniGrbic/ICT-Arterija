@@ -13,7 +13,6 @@ const MenuNavigation = () => {
           <li>
             <Home />
           </li>
-
           <li>
             <Events />
           </li>
