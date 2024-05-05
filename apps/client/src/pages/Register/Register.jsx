@@ -4,33 +4,37 @@ import { useState } from "react";
 import RegitrationEmail from "../../components/RegistrationEmail/RegistrationEmail";
 import RegistrationPassword from "../../components/RegistrationPassword/RegistrationPassword";
 
-const stepsComponents = [
-  {
-    step: 1,
-    component: <RegitrationEmail />,
-    title: "E-pošta",
-  },
-  {
-    step: 2,
-    component: <RegistrationPassword />,
-    title: "Zaporka",
-  },
-  {
-    step: 3,
-    component: <div>Step 3</div>,
-    title: "Korisničko ime",
-  },
-  {
-    step: 4,
-    component: <div>Step 4</div>,
-    title: "Osobni podaci",
-  },
-];
-
 export default function Register() {
   const handleNextStep = () => {
     setStep((prev) => prev + 1);
   };
+
+  const getData = (data) => {
+    console.log(data);
+  };
+
+  const stepsComponents = [
+    {
+      step: 1,
+      component: <RegitrationEmail getData={getData} />,
+      title: "E-pošta",
+    },
+    {
+      step: 2,
+      component: <RegistrationPassword />,
+      title: "Zaporka",
+    },
+    {
+      step: 3,
+      component: <div>Step 3</div>,
+      title: "Korisničko ime",
+    },
+    {
+      step: 4,
+      component: <div>Step 4</div>,
+      title: "Osobni podaci",
+    },
+  ];
 
   const [step, setStep] = useState(0);
 
