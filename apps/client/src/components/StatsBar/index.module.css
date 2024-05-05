@@ -1,0 +1,26 @@
+.statsbar-container {
+  border-radius: 12px;
+  background: #d9d9d9;
+  padding: 0 25px;
+  height: 49px;
+  margin-top: 55px;
+  position: relative;
+}
+
+.left-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background: #e03943;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 21px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

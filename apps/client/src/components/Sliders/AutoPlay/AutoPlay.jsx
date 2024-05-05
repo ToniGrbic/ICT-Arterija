@@ -1,17 +1,17 @@
 import React from "react";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import styles from "./index.module.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-function SliderImage() {
+function SliderImage({ imgUrl = null }) {
   return (
     <div className={styles["slider-image-container"]}>
       <img
-        width={327}
+        width={355}
         height={188}
-        src="https://via.placeholder.com/150"
-        alt="placeholder"
+        src={imgUrl || "https://via.placeholder.com/355x188"}
+        alt="slider-image"
       />
     </div>
   );
@@ -29,7 +29,7 @@ function AutoPlay() {
     cssEase: "linear",
   };
   return (
-    <div>
+    <div className={styles["slider-container"]}>
       <Slider {...settings}>
         {Array.from({ length: 5 }).map((_, index) => (
           <SliderImage key={index} />

@@ -20,7 +20,7 @@ const MainLayout = ({ children }) => {
           </div>
         </nav>
       </header>
-      {children}
+      <div className={styles["main-content"]}>{children}</div>
       <MenuNavigation />
     </div>
   );
