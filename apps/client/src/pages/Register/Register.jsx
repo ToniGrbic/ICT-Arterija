@@ -5,12 +5,22 @@ import RegitrationEmail from "../../components/RegistrationEmail/RegistrationEma
 import RegistrationPassword from "../../components/RegistrationPassword/RegistrationPassword";
 
 export default function Register() {
-  const handleNextStep = () => {
-    setStep((prev) => prev + 1);
+  const [userData, setUserData] = useState({
+    email: "",
+    password: "",
+    username: "",
+  });
+
+  const getData = (data, dataType) => {
+    setUserData((prevUserData) => ({
+      ...prevUserData,
+      [dataType]: data,
+    }));
   };
 
-  const getData = (data) => {
-    console.log(data);
+  const handleNextStep = () => {
+    setStep((prevStep) => prevStep + 1);
+    console.log(userData);
   };
 
   const stepsComponents = [
@@ -21,7 +31,7 @@ export default function Register() {
     },
     {
       step: 2,
-      component: <RegistrationPassword />,
+      component: <RegistrationPassword getData={getData} />,
       title: "Zaporka",
     },
     {
@@ -44,16 +54,24 @@ export default function Register() {
         <ArteriaLogo />
         <div className={classes.stepsContainer}>
           <span
-            className={`${classes.registerStepsSpan} ${step >= 0 ? classes.registerStepsSpanActive : ""}`}
+            className={`${classes.registerStepsSpan} ${
+              step >= 0 ? classes.registerStepsSpanActive : ""
+            }`}
           ></span>
           <span
-            className={`${classes.registerStepsSpan} ${step >= 1 ? classes.registerStepsSpanActive : ""}`}
+            className={`${classes.registerStepsSpan} ${
+              step >= 1 ? classes.registerStepsSpanActive : ""
+            }`}
           ></span>
           <span
-            className={`${classes.registerStepsSpan} ${step >= 2 ? classes.registerStepsSpanActive : ""}`}
+            className={`${classes.registerStepsSpan} ${
+              step >= 2 ? classes.registerStepsSpanActive : ""
+            }`}
           ></span>
           <span
-            className={`${classes.registerStepsSpan} ${step >= 3 ? classes.registerStepsSpanActive : ""}`}
+            className={`${classes.registerStepsSpan} ${
+              step >= 3 ? classes.registerStepsSpanActive : ""
+            }`}
           ></span>
         </div>
         <button className={classes.exitButton}>X</button>

@@ -7,8 +7,11 @@ export default function RegistrationEmail({ getData }) {
 
   const handleEmailChange = (event) => {
     const newEmail = event.target.value;
+    if (newEmail === "" || newEmail === null || newEmail === undefined) {
+      return;
+    }
     setEmail(newEmail);
-    getData(newEmail);
+    getData(newEmail, "email");
   };
 
   return (
