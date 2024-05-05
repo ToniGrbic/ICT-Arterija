@@ -1,10 +1,45 @@
 import { useRegistration } from "../../providers/RegistrationProvider";
 import classes from "./index.module.css";
+import { useState } from "react";
 
-// eslint-disable-next-line react/prop-types
+const validatePassword = (password) => {
+  if (password.length < 8) {
+    return "Lozinka mora biti barem 8 znakova dugačka.";
+  }
+
+  if (!/\d/.test(password)) {
+    return "Lozinka mora sadržavati barem jedan broj.";
+  }
+
+  // eslint-disable-next-line no-useless-escape
+  if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
+    return "Lozinka mora sadržavati barem jedan poseban znak.";
+  }
+
+  return true;
+};
+
 export default function RegistrationPassword() {
-  const { updateStep, userData } = useRegistration();
-  console.log(userData);
+  const { updateStep, updateData } = useRegistration();
+  const [password, setPassword] = useState("");
+  const [isPasswordValid, setIsPasswordValid] = useState(true);
+  const [validationMessage, setValidationMessage] = useState("");
+
+  const handlePasswordChange = (event) => {
+    const newPassword = event.target.value;
+    setPassword(newPassword);
+  };
+
+  const handlePasswordRegistration = () => {
+    const validation = validatePassword(password);
+    if (validation !== true) {
+      setIsPasswordValid(false);
+      setValidationMessage(validation);
+      return;
+    }
+    updateData(password, "password");
+    updateStep();
+  };
 
   return (
     <div className={classes.registrationPasswordContainer}>
@@ -16,9 +51,17 @@ export default function RegistrationPassword() {
       <input
         type="password"
         placeholder="Zaporka"
-        className={classes.passwordInput}
+        value={password}
+        onChange={handlePasswordChange}
+        className={`${classes.passwordInput} ${!isPasswordValid ? classes.registrationInputInvalid : ""}`}
       />
-      <button className={classes.registrationButton} onClick={updateStep}>
+      {!isPasswordValid && (
+        <p className={classes.errorMessage}>{validationMessage}</p>
+      )}
+      <button
+        className={classes.registrationButton}
+        onClick={handlePasswordRegistration}
+      >
         Nastavi
       </button>
     </div>

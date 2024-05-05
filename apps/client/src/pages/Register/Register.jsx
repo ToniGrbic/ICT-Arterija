@@ -7,7 +7,7 @@ import { useRegistration } from "../../providers/RegistrationProvider";
 
 export default function Register() {
   const navigate = useNavigate();
-  const { step } = useRegistration();
+  const { step, userData } = useRegistration();
 
   const stepsComponents = [
     {
@@ -22,7 +22,7 @@ export default function Register() {
     },
     {
       step: 3,
-      component: <div>Step 3</div>,
+      component: <div>Step 3{console.log(userData)}</div>,
       title: "Korisničko ime",
     },
     {

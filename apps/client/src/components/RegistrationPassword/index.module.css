@@ -53,3 +53,7 @@
   color: white;
   border: none;
 }
+
+.registrationInputInvalid {
+  border: red 1px solid;
+}
