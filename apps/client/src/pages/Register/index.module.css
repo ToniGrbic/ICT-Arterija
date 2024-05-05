@@ -32,21 +32,6 @@
   background-color: #f3bc4d;
 }
 
-.registrationButton {
-  position: absolute;
-  bottom: 2rem;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%;
-  padding: 0.8rem 0;
-  border-radius: 0.5rem;
-  background-color: #f3bc4d;
-  color: white;
-  border: none;
-}
-
 .stepTitleContainer {
   margin-top: 1.3rem;
   display: flex;

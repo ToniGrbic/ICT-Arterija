@@ -84,6 +84,12 @@ export class UsersController {
     return this.usersService.findOne(+id);
   }
 
+  @Get('/email/:email')
+  @ApiOkResponse({ type: UserEntity })
+  findByEmail(@Param('email') email: string) {
+    return this.usersService.findByEmail(email);
+  }
+
   @Patch(':id')
   @ApiBearerAuth()
   @UseGuards(StaffOrAdminAuthGuard)

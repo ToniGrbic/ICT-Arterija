@@ -1,15 +1,10 @@
+import { useRegistration } from "../../providers/RegistrationProvider";
 import classes from "./index.module.css";
-import { useState } from "react";
 
 // eslint-disable-next-line react/prop-types
-export default function RegistrationPassword({ getData }) {
-  const [password, setPassword] = useState("");
-
-  const handlePasswordChange = (event) => {
-    const newPassword = event.target.value;
-    setPassword(newPassword);
-    getData(newPassword, "password");
-  };
+export default function RegistrationPassword() {
+  const { updateStep, userData } = useRegistration();
+  console.log(userData);
 
   return (
     <div className={classes.registrationPasswordContainer}>
@@ -22,9 +17,10 @@ export default function RegistrationPassword({ getData }) {
         type="password"
         placeholder="Zaporka"
         className={classes.passwordInput}
-        value={password}
-        onChange={handlePasswordChange}
       />
+      <button className={classes.registrationButton} onClick={updateStep}>
+        Nastavi
+      </button>
     </div>
   );
 }

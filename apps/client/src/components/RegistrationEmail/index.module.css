@@ -38,3 +38,22 @@
   font-weight: 400;
   line-height: 1.3125rem;
 }
+
+.registrationButton {
+  position: absolute;
+  bottom: 2rem;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  padding: 0.8rem 0;
+  border-radius: 0.5rem;
+  background-color: #f3bc4d;
+  color: white;
+  border: none;
+}
+
+.invalidEmail {
+  border-color: red;
+}
