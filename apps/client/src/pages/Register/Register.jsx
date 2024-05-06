@@ -5,6 +5,7 @@ import RegistrationDate from "../../components/RegistrationDate/RegistrationDate
 import { useNavigate } from "react-router-dom";
 import { useRegistration } from "../../providers/RegistrationProvider";
 import RegistrationEmail from "../../components/RegistrationEmail/RegistrationEmail";
+import RegistrationUserName from "../../components/RegistrationUserName/RegistrationUserName";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -12,22 +13,22 @@ export default function Register() {
 
   const stepsComponents = [
     {
-      step: 1,
       component: <RegistrationEmail />,
       title: "E-pošta",
     },
     {
-      step: 2,
       component: <RegistrationPassword />,
       title: "Zaporka",
     },
     {
-      step: 3,
+      component: <RegistrationUserName />,
+      title: "Postavljanje Profila",
+    },
+    {
       component: <RegistrationDate />,
       title: "Datum Rođenja",
     },
     {
-      step: 4,
       component: <div>Step 4</div>,
       title: "Osobni podaci",
     },

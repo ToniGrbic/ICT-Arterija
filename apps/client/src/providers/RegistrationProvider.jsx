@@ -5,6 +5,8 @@ const defaultUserData = {
   password: "",
   dateOfBirth: "",
   gender: "",
+  name: "",
+  surname: "",
 };
 
 const defaultStep = 0;
