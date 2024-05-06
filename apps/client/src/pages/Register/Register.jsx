@@ -10,7 +10,7 @@ import RegistrationGender from "../../components/RegistrationGender/Registration
 
 export default function Register() {
   const navigate = useNavigate();
-  const { step, userData, updateStepBack } = useRegistration();
+  const { step, updateStepBack } = useRegistration();
 
   const stepsComponents = [
     {
@@ -34,7 +34,6 @@ export default function Register() {
       title: "Osobni podaci",
     },
   ];
-  console.log(userData);
   return (
     <div className={classes.registerPage}>
       <div className={classes.registerHeader}>

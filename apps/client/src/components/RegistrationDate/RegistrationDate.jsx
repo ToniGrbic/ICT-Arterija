@@ -20,11 +20,10 @@ export default function RegistrationDate() {
 
     const formattedDate = registrationDate.toISOString();
 
-    updateData(formattedDate, "dateOfBirth");
+    updateData(formattedDate, "birth_date");
     updateStep();
   };
 
-  console.log(parentSelectedDate);
   return (
     <div className={classes.registrationDateContainer}>
       <h1>Unesite Vaš datum rođenja.</h1>

@@ -4,16 +4,39 @@ import { useRegistration } from "../../providers/RegistrationProvider";
 
 export default function RegistrationGender() {
   const [selectedGender, setSelectedGender] = useState(null);
+  const [error, setError] = useState(null);
   const { updateData, userData } = useRegistration();
 
   const handleGenderSelection = (gender) => {
     setSelectedGender(gender);
+    updateData(gender, "gender");
   };
 
   const handleRegistration = () => {
-    console.log("Selected gender:", selectedGender);
-    updateData(selectedGender, "gender");
-    console.log(userData);
+    if (!selectedGender) {
+      setError("Please select a gender.");
+      return;
+    }
+
+    fetch("/api/users/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          return response.message;
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("There was a problem with your fetch operation:", error);
+      });
   };
 
   return (
@@ -31,6 +54,7 @@ export default function RegistrationGender() {
       >
         Žensko
       </button>
+      <p className={classes.error}>{error}</p>
       <button
         className={classes.registrationButton}
         onClick={handleRegistration}

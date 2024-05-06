@@ -45,7 +45,7 @@ export class UsersController {
       surname,
       password,
       gender,
-      age,
+      birth_date,
       location,
       role,
     }: RegisterUserDto,
@@ -56,7 +56,7 @@ export class UsersController {
       surname,
       password,
       gender,
-      age,
+      birth_date,
       location,
       role,
     });

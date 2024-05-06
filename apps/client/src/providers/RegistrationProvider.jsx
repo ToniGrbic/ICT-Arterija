@@ -3,10 +3,12 @@ import { createContext, useState, useContext } from "react";
 const defaultUserData = {
   email: "",
   password: "",
-  dateOfBirth: "",
+  birth_date: "",
   gender: "",
   name: "",
   surname: "",
+  role: "User",
+  location: "string",
 };
 
 const defaultStep = 0;

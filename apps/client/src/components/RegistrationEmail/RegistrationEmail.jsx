@@ -8,11 +8,13 @@ export default function RegistrationEmail() {
   const { updateStep, updateData } = useRegistration();
   const [email, setEmail] = useState("");
   const [validEmail, setValidEmail] = useState(true);
+  const [emailInUse, setEmailInUse] = useState(false);
 
   const handleEmailChange = (event) => {
     const newEmail = event.target.value;
     setEmail(newEmail);
     setValidEmail(emailRegex.test(newEmail));
+    setEmailInUse(false);
   };
 
   async function isEmailUsed(email) {
@@ -48,8 +50,7 @@ export default function RegistrationEmail() {
         updateData(email, "email");
         updateStep();
       } else {
-        setValidEmail(false);
-        alert("Email se već koristi.");
+        setEmailInUse(true);
       }
     });
   };
@@ -69,6 +70,9 @@ export default function RegistrationEmail() {
       />
       {!validEmail && (
         <p className={classes.errorMessage}>Unesite važeću e-poštu.</p>
+      )}
+      {emailInUse && (
+        <p className={classes.errorMessage}>Email se već koristi.</p>
       )}
       <button
         className={classes.registrationButton}
