@@ -1,7 +1,8 @@
 import ArteriaLogo from "../../icons/ArteriaLogo/ArteriaLogo";
 import classes from "./index.module.css";
-import RegitrationEmail from "../../components/RegistrationEmail/RegistrationEmail";
+import CustomPicker from "../../components/RegistrationDate/RegistrationDate";
 import RegistrationPassword from "../../components/RegistrationPassword/RegistrationPassword";
+import RegistrationDate from "../../components/RegistrationDate/RegistrationDate";
 import { useNavigate } from "react-router-dom";
 import { useRegistration } from "../../providers/RegistrationProvider";
 
@@ -12,7 +13,7 @@ export default function Register() {
   const stepsComponents = [
     {
       step: 1,
-      component: <RegitrationEmail />,
+      component: <CustomPicker />,
       title: "E-pošta",
     },
     {
