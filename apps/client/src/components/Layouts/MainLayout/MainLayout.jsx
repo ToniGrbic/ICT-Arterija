@@ -3,6 +3,7 @@ import styles from "./index.module.css";
 import ArteriaLogo from "../../../icons/ArteriaLogo/ArteriaLogo";
 import Notifications from "../../../icons/Notifications/Notifications";
 import MenuNavigation from "../../MenuNavigation/MenuNavigation";
+import { Outlet } from "react-router";
 
 const MainLayout = ({ children }) => {
   return (
@@ -13,14 +14,16 @@ const MainLayout = ({ children }) => {
             <ArteriaLogo />
           </div>
           <div>
-            <h1>Arteria</h1>
+            <h1>Početna</h1>
           </div>
           <div>
             <Notifications />
           </div>
         </nav>
       </header>
-      <div className={styles["main-content"]}>{children}</div>
+      <div className={styles["main-content"]}>
+        <Outlet />
+      </div>
       <MenuNavigation />
     </div>
   );
