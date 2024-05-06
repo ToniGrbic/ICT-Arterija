@@ -1,0 +1,37 @@
+.landing-main-wrapper {
+  padding: 0 25px;
+}
+
+.rewards-teaser {
+  max-width: 327px;
+  height: 76px;
+  background: #f3bc4d;
+  padding: 40px 52px;
+  border-radius: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 69px;
+  & > h1 {
+    color: #fffcf8;
+    text-align: center;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 38px;
+    margin: 0;
+  }
+}
+
+.rewards-page-button {
+  border: none;
+  position: absolute;
+
+  object-fit: contain;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  right: -24px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

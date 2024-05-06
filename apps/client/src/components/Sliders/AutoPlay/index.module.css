@@ -1,0 +1,15 @@
+.slider-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+}
+
+.slider-image-container img {
+  border-radius: 12px;
+}
+
+.slider-container {
+  width: 90%;
+  margin-left: 1rem;
+}

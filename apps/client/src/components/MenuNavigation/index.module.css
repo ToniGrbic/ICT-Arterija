@@ -1,0 +1,23 @@
+.menu-navigation-list {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 3rem;
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  height: 24px;
+}
+
+.menu-container {
+  border-radius: 12px;
+  background: #e03943;
+  padding: 0 25px;
+  position: fixed;
+  bottom: 22px;
+  right: 24px;
+  left: 24px;
+  box-shadow: 0px 1px 32px 0px rgba(224, 57, 67, 0.4);
+}
