@@ -1,10 +1,10 @@
 import ArteriaLogo from "../../icons/ArteriaLogo/ArteriaLogo";
 import classes from "./index.module.css";
-import CustomPicker from "../../components/RegistrationDate/RegistrationDate";
 import RegistrationPassword from "../../components/RegistrationPassword/RegistrationPassword";
 import RegistrationDate from "../../components/RegistrationDate/RegistrationDate";
 import { useNavigate } from "react-router-dom";
 import { useRegistration } from "../../providers/RegistrationProvider";
+import RegistrationEmail from "../../components/RegistrationEmail/RegistrationEmail";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ export default function Register() {
   const stepsComponents = [
     {
       step: 1,
-      component: <CustomPicker />,
+      component: <RegistrationEmail />,
       title: "E-pošta",
     },
     {
@@ -23,8 +23,8 @@ export default function Register() {
     },
     {
       step: 3,
-      component: <div>Step 3{console.log(userData)}</div>,
-      title: "Korisničko ime",
+      component: <RegistrationDate />,
+      title: "Datum Rođenja",
     },
     {
       step: 4,
@@ -32,7 +32,7 @@ export default function Register() {
       title: "Osobni podaci",
     },
   ];
-
+  console.log(userData);
   return (
     <div className={classes.registerPage}>
       <div className={classes.registerHeader}>

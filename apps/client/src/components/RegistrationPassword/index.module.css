@@ -16,6 +16,19 @@
   line-height: 1.75rem; /* 116.667% */
 }
 
+.registrationPasswordContainer h2 {
+  color: #000;
+
+  /* Text/Podnaslov */
+  font-family: "Rethink Sans";
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.3125rem; /* 131.25% */
+  margin-bottom: -1.5rem;
+  margin-top: 1rem;
+}
+
 .registrationPasswordContainer p {
   color: #000;
   text-align: center;
@@ -41,7 +54,7 @@
 
 .registrationButton {
   position: absolute;
-  bottom: 2rem;
+  bottom: 1rem;
   left: 0;
   right: 0;
   margin-left: auto;
@@ -56,4 +69,34 @@
 
 .registrationInputInvalid {
   border: red 1px solid;
+}
+
+.registrationPasswordRequirements {
+  align-self: flex-start;
+  margin-left: 2rem;
+}
+
+.registrationPasswordRequirements p {
+  margin-top: 0.7rem;
+  text-align: left;
+  color: #000;
+
+  /* Text/Copy */
+  font-family: "Rethink Sans";
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.3125rem; /* 150% */
+}
+
+.registrationPasswordRequirements li {
+  color: #000;
+  margin-top: 0.3rem;
+
+  /* Text/Copy */
+  font-family: "Rethink Sans";
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.3125rem; /* 150% */
 }

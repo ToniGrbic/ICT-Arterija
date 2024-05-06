@@ -1,72 +1,41 @@
-import React, { useState, useEffect } from "react";
-import Picker from "react-scrollable-picker";
+import { useState } from "react";
+import CustomDatePicker from "../DatePicker/DatePicker";
+import classes from "./index.module.css";
+import { useRegistration } from "../../providers/RegistrationProvider";
 
-const CustomDatePicker = () => {
-  // Initial date values
-  const initialDate = new Date();
-  const [selectedDate, setSelectedDate] = useState({
-    year: initialDate.getFullYear(),
-    month: initialDate.getMonth() + 1,
-    day: initialDate.getDate(),
-  });
+export default function RegistrationDate() {
+  const [parentSelectedDate, setParentSelectedDate] = useState(null);
+  const { updateStep, updateData } = useRegistration();
 
-  // Generate options for days, months, and years
-  const daysInMonth = new Date(
-    selectedDate.year,
-    selectedDate.month,
-    0
-  ).getDate(); // Get the number of days in the selected month
-  const days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
-  const months = [
-    "siječanj", // January
-    "veljača", // February
-    "ožujak", // March
-    "travanj", // April
-    "svibanj", // May
-    "lipanj", // June
-    "srpanj", // July
-    "kolovoz", // August
-    "rujan", // September
-    "listopad", // October
-    "studeni", // November
-    "prosinac", // December
-  ];
-  const years = Array.from(
-    { length: 101 },
-    (_, i) => initialDate.getFullYear() - i
-  ); // Years range from 20 years after to 80 years before the current year
-
-  // Handle change in selected date
-  const handleChange = (name, value) => {
-    setSelectedDate((prevDate) => ({
-      ...prevDate,
-      [name]: value,
-    }));
+  const handleSelectedDateChange = (selectedDate) => {
+    setParentSelectedDate(selectedDate);
   };
 
-  // Log selected date whenever it changes
-  useEffect(() => {
-    console.log("Selected Date:", selectedDate);
-  }, [selectedDate]);
+  const handleRegistrationDate = () => {
+    const registrationDate = new Date(
+      parentSelectedDate.year,
+      parentSelectedDate.month - 1,
+      parentSelectedDate.day + 1
+    );
 
+    const formattedDate = registrationDate.toISOString();
+
+    updateData(formattedDate, "dateOfBirth");
+    updateStep();
+  };
+
+  console.log(parentSelectedDate);
   return (
-    <Picker
-      optionGroups={{
-        day: days.map((day) => ({ value: day, label: day })),
-        month: months.map((month, index) => ({
-          value: index + 1,
-          label: month,
-        })),
-        year: years.map((year) => ({ value: year, label: year })),
-      }}
-      valueGroups={{
-        day: selectedDate.day,
-        month: selectedDate.month,
-        year: selectedDate.year,
-      }}
-      onChange={handleChange}
-    />
+    <div className={classes.registrationDateContainer}>
+      <h1>Unesite Vaš datum rođenja.</h1>
+      <p>Koristite Vaš datum rođenja.</p>
+      <CustomDatePicker onDateChange={handleSelectedDateChange} />
+      <button
+        className={classes.registrationButton}
+        onClick={handleRegistrationDate}
+      >
+        Nastavite
+      </button>
+    </div>
   );
-};
-
-export default CustomDatePicker;
+}

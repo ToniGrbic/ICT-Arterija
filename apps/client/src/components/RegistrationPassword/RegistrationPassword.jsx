@@ -73,11 +73,21 @@ export default function RegistrationPassword() {
           Potvrda zaporke nije jednaka zaporki.
         </p>
       )}
+      <div className={classes.registrationPasswordRequirements}>
+        <p>Zaporka treba sadržavati:</p>
+        <ul>
+          <li>8 znakova</li>
+          <li>Najmanje jedan broj</li>
+          <li>Najmanje jedno veliko i jedno malo slovo</li>
+          <li>Najmanje jedan poseban znak</li>
+        </ul>
+      </div>
+
       <button
         className={classes.registrationButton}
         onClick={handlePasswordRegistration}
       >
-        Nastavi
+        Nastavite
       </button>
     </div>
   );
