@@ -61,3 +61,10 @@
   background-color: #f3bc4d;
   opacity: 0.7;
 }
+
+.registrationPopupContainer {
+  position: absolute;
+  width: 90%;
+  height: 60%;
+  top: 7rem;
+}

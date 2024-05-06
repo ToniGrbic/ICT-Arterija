@@ -1,10 +1,12 @@
 import { useState } from "react";
 import classes from "./index.module.css";
 import { useRegistration } from "../../providers/RegistrationProvider";
+import RegistrationConfirmPopup from "../registrationConfirmPopup/registrationConfirmPopup";
 
 export default function RegistrationGender() {
   const [selectedGender, setSelectedGender] = useState(null);
   const [error, setError] = useState(null);
+  const [isPopupVisible, setPopupVisible] = useState(false); // State to control popup visibility
   const { updateData, userData } = useRegistration();
 
   const handleGenderSelection = (gender) => {
@@ -33,6 +35,7 @@ export default function RegistrationGender() {
       })
       .then((data) => {
         console.log(data);
+        setPopupVisible(true); // Show the popup after successful registration
       })
       .catch((error) => {
         console.error("There was a problem with your fetch operation:", error);
@@ -61,6 +64,11 @@ export default function RegistrationGender() {
       >
         Registracija
       </button>
+      {isPopupVisible && (
+        <div className={classes.registrationPopupContainer}>
+          <RegistrationConfirmPopup />
+        </div>
+      )}
     </div>
   );
 }
