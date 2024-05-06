@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useRegistration } from "../../providers/RegistrationProvider";
 import RegistrationEmail from "../../components/RegistrationEmail/RegistrationEmail";
 import RegistrationUserName from "../../components/RegistrationUserName/RegistrationUserName";
+import RegistrationGender from "../../components/RegistrationGender/RegistrationGender";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ export default function Register() {
       title: "Datum Rođenja",
     },
     {
-      component: <div>Step 4</div>,
+      component: <RegistrationGender />,
       title: "Osobni podaci",
     },
   ];

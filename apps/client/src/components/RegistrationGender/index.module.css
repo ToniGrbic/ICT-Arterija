@@ -1,0 +1,63 @@
+.registrationGenderContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 2.4rem;
+}
+
+.registrationGenderContainer h1 {
+  color: #000;
+  text-align: center;
+  margin-bottom: 3rem;
+
+  /* Text/Naslov */
+  font-family: "Rethink Sans";
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.4rem; /* 116.667% */
+}
+
+.genderButton {
+  display: flex;
+  width: 20rem;
+  height: 4rem;
+  padding: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 1.25rem;
+  border: none;
+  color: white;
+  background: #f3bc4d;
+  color: var(--White, #fffcf8);
+  font-family: "Rethink Sans";
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.75rem; /* 116.667% */
+  box-shadow: 0px 2px 8px 2px rgba(18, 27, 40, 0.04);
+}
+
+.registrationButton {
+  position: absolute;
+  bottom: 1rem;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  padding: 1rem 0;
+  border-radius: 0.5rem;
+  background-color: #f3bc4d;
+  color: white;
+  border: none;
+}
+
+.selectedMale,
+.selectedFemale {
+  background-color: #f3bc4d;
+  opacity: 0.7;
+}
