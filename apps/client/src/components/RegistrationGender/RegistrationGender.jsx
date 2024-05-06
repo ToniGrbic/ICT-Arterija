@@ -6,7 +6,7 @@ import RegistrationConfirmPopup from "../registrationConfirmPopup/registrationCo
 export default function RegistrationGender() {
   const [selectedGender, setSelectedGender] = useState(null);
   const [error, setError] = useState(null);
-  const [isPopupVisible, setPopupVisible] = useState(false); // State to control popup visibility
+  const [isPopupVisible, setPopupVisible] = useState(false);
   const { updateData, userData } = useRegistration();
 
   const handleGenderSelection = (gender) => {
