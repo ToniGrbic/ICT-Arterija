@@ -7,7 +7,7 @@ import EventsPreview from "../../components/Events/EventsPreview/EventsPreview";
 import ArrowRight from "../../icons/ArrowRight/ArrowRight";
 import BlogsPreview from "../../components/Blogs/BlogsPreview/BlogsPreview";
 
-const LandingPage = () => {
+const Home = () => {
   return (
     <>
       <AutoPlay />
@@ -27,4 +27,4 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+export default Home;

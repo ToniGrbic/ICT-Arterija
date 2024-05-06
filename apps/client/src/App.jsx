@@ -1,4 +1,4 @@
-import LandingPage from "./pages/LandingPage/LandingPage";
+import Home from "./pages/Home/Home";
 import MainLayout from "./components/Layouts/MainLayout/MainLayout";
 import "./App.css";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
@@ -11,7 +11,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<MainLayout />}>
-            <Route path="/" element={<LandingPage />} />
+            <Route path="/" element={<Home />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
