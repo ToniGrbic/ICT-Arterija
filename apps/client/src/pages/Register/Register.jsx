@@ -10,7 +10,7 @@ import RegistrationGender from "../../components/RegistrationGender/Registration
 
 export default function Register() {
   const navigate = useNavigate();
-  const { step, userData } = useRegistration();
+  const { step, userData, updateStepBack } = useRegistration();
 
   const stepsComponents = [
     {
@@ -38,7 +38,13 @@ export default function Register() {
   return (
     <div className={classes.registerPage}>
       <div className={classes.registerHeader}>
-        <ArteriaLogo />
+        {step === 0 ? (
+          <ArteriaLogo />
+        ) : (
+          <button className={classes.stepBackButton} onClick={updateStepBack}>
+            {"<"}
+          </button>
+        )}
         <div className={classes.stepsContainer}>
           <span
             className={`${classes.registerStepsSpan} ${
@@ -58,6 +64,11 @@ export default function Register() {
           <span
             className={`${classes.registerStepsSpan} ${
               step >= 3 ? classes.registerStepsSpanActive : ""
+            }`}
+          ></span>
+          <span
+            className={`${classes.registerStepsSpan} ${
+              step >= 4 ? classes.registerStepsSpanActive : ""
             }`}
           ></span>
         </div>

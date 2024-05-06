@@ -26,9 +26,13 @@ const RegistrationProvider = ({ children }) => {
     setStep(step + 1);
   };
 
+  const updateStepBack = () => {
+    setStep(step - 1);
+  };
+
   return (
     <RegistrationContext.Provider
-      value={{ userData, updateData, updateStep, step }}
+      value={{ userData, updateData, updateStep, step, updateStepBack }}
     >
       {children}
     </RegistrationContext.Provider>
