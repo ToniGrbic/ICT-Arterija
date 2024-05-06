@@ -1,0 +1,37 @@
+.events-preview-container {
+  display: flex;
+  gap: 24px;
+  overflow-x: scroll;
+}
+
+.event-preview {
+  border-radius: 12px;
+  position: relative;
+  & > img {
+    border-radius: 12px;
+  }
+
+  & > h3 {
+    position: absolute;
+    bottom: 0px;
+    left: 8px;
+    color: #fff;
+  }
+}
+
+.events-preview-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.events-preview-more-btn {
+  color: #000;
+  font-family: "Rethink Sans";
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 21px;
+  letter-spacing: -0.32px;
+  position: relative;
+  top: 20px;
+}
