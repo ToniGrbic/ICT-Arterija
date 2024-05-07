@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "@capacitor/cli": "^6.0.0",
+    "react-router-dom": "^6.23.0",
     "turbo": "^1.13.3"
   },
   "scripts": {

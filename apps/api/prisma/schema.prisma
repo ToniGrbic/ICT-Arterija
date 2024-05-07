@@ -7,40 +7,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Role {
-  User
-  Staff
-  Admin
-}
-
-enum BloodTypes {
-  A_POSITIVE
-  A_NEGATIVE
-  B_POSITIVE
-  B_NEGATIVE
-  AB_POSITIVE
-  AB_NEGATIVE
-  O_POSITIVE
-  O_NEGATIVE
-}
-
-enum Gender {
-  Male
-  Female
-} 
-
 model blogs {
   id              Int      @id @default(autoincrement())
   title           String   @db.VarChar(255)
   body            String
   author          String?  @db.VarChar(255)
+  created_at      DateTime @default(now())
   main_image      String?  @db.VarChar(255)
   secondary_image String?  @db.VarChar(255)
-  created_at      DateTime @default(now())
 }
 
 model participants {
-  id              Int    @id  @default(autoincrement())
+  id              Int    @id @default(autoincrement())
   user_id         Int
   event_id        Int
   donation_events events @relation(fields: [event_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "participants_event_id_foreign")
@@ -120,16 +98,38 @@ model users {
   email              String         @unique(map: "users_email_unique") @db.VarChar(255)
   password           String         @db.VarChar(255)
   location           String         @db.VarChar(255)
-  age                Int
-  points             Int            @default(0)   
   can_donate         Boolean        @default(true)
   next_donation_date DateTime?      @default(now())
   gender             Gender
   blood_type         BloodTypes?
-  role               Role           @default(User)    
+  role               Role           @default(User)
   center_id          Int?
+  points             Int            @default(0)
+  birth_date         DateTime       @default(now())
   participants       participants[]
   schedules          schedules[]
   user_rewards       user_rewards[]
   centers            centers?       @relation(fields: [center_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "users_center_id_foreign")
+}
+
+enum Role {
+  User
+  Staff
+  Admin
+}
+
+enum BloodTypes {
+  A_POSITIVE
+  A_NEGATIVE
+  B_POSITIVE
+  B_NEGATIVE
+  AB_POSITIVE
+  AB_NEGATIVE
+  O_POSITIVE
+  O_NEGATIVE
+}
+
+enum Gender {
+  Male
+  Female
 }

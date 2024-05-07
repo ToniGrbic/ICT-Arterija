@@ -45,7 +45,7 @@ export class UsersController {
       surname,
       password,
       gender,
-      age,
+      birth_date,
       location,
       role,
     }: RegisterUserDto,
@@ -56,7 +56,7 @@ export class UsersController {
       surname,
       password,
       gender,
-      age,
+      birth_date,
       location,
       role,
     });
@@ -82,6 +82,12 @@ export class UsersController {
   @ApiOkResponse({ type: UserEntity })
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(+id);
+  }
+
+  @Get('/email/:email')
+  @ApiOkResponse({ type: UserEntity })
+  findByEmail(@Param('email') email: string) {
+    return this.usersService.findByEmail(email);
   }
 
   @Patch(':id')

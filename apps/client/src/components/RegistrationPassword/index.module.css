@@ -1,0 +1,102 @@
+.registrationPasswordContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 2.4rem;
+}
+
+.registrationPasswordContainer h1 {
+  color: #000;
+  font-family: "Rethink Sans";
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.75rem; /* 116.667% */
+}
+
+.registrationPasswordContainer h2 {
+  color: #000;
+
+  /* Text/Podnaslov */
+  font-family: "Rethink Sans";
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.3125rem; /* 131.25% */
+  margin-bottom: -1.5rem;
+  margin-top: 1rem;
+}
+
+.registrationPasswordContainer p {
+  color: #000;
+  text-align: center;
+  font-family: "Rethink Sans";
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.3125rem; /* 150% */
+}
+
+.passwordInput {
+  width: 85%;
+  margin-top: 1.8rem;
+  padding: 0.8rem 0.6rem;
+  border-radius: 0.5rem;
+  border: 1px solid #c5c5c5;
+  font-family: "Rethink Sans";
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.3125rem;
+}
+
+.registrationButton {
+  position: absolute;
+  bottom: 1rem;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  padding: 0.8rem 0;
+  border-radius: 0.5rem;
+  background-color: #f3bc4d;
+  color: white;
+  border: none;
+}
+
+.registrationInputInvalid {
+  border: red 1px solid;
+}
+
+.registrationPasswordRequirements {
+  align-self: flex-start;
+  margin-left: 2rem;
+}
+
+.registrationPasswordRequirements p {
+  margin-top: 0.7rem;
+  text-align: left;
+  color: #000;
+
+  /* Text/Copy */
+  font-family: "Rethink Sans";
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.3125rem; /* 150% */
+}
+
+.registrationPasswordRequirements li {
+  color: #000;
+  margin-top: 0.3rem;
+
+  /* Text/Copy */
+  font-family: "Rethink Sans";
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.3125rem; /* 150% */
+}

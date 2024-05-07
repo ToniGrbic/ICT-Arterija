@@ -17,7 +17,7 @@ export class UserEntity {
   surname: string;
 
   @ApiProperty()
-  age: number;
+  birth_date: Date;
 
   @ApiProperty()
   gender: string;
