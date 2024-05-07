@@ -37,6 +37,9 @@ export class UsersService {
     const payload = {
       id: user.id,
       email: user.email,
+      name: user.name,
+      surname: user.surname,
+      points: user.points,
       role: user.role,
     };
     return { token: this.jwtService.sign(payload) };
@@ -60,7 +63,9 @@ export class UsersService {
       id: user.id,
       email: user.email,
       name: user.name,
+      surname: user.surname,
       role: user.role,
+      points: user.points,
     };
 
     return { token: this.jwtService.sign(payload), ...payload };

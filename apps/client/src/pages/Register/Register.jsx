@@ -44,32 +44,9 @@ export default function Register() {
             {"<"}
           </button>
         )}
-        <div className={classes.stepsContainer}>
-          <span
-            className={`${classes.registerStepsSpan} ${
-              step >= 0 ? classes.registerStepsSpanActive : ""
-            }`}
-          ></span>
-          <span
-            className={`${classes.registerStepsSpan} ${
-              step >= 1 ? classes.registerStepsSpanActive : ""
-            }`}
-          ></span>
-          <span
-            className={`${classes.registerStepsSpan} ${
-              step >= 2 ? classes.registerStepsSpanActive : ""
-            }`}
-          ></span>
-          <span
-            className={`${classes.registerStepsSpan} ${
-              step >= 3 ? classes.registerStepsSpanActive : ""
-            }`}
-          ></span>
-          <span
-            className={`${classes.registerStepsSpan} ${
-              step >= 4 ? classes.registerStepsSpanActive : ""
-            }`}
-          ></span>
+        <div className={classes.stepTitleContainer}>
+          <p className={classes.stepLogo}>{step + 1}</p>
+          <h1>{stepsComponents[step].title}</h1>
         </div>
         <button
           className={classes.exitButton}
@@ -80,9 +57,32 @@ export default function Register() {
           X
         </button>
       </div>
-      <div className={classes.stepTitleContainer}>
-        <p className={classes.stepLogo}>{step + 1}</p>
-        <h1>{stepsComponents[step].title}</h1>
+      <div className={classes.stepsContainer}>
+        <span
+          className={`${classes.registerStepsSpan} ${
+            step >= 0 ? classes.registerStepsSpanActive : ""
+          }`}
+        ></span>
+        <span
+          className={`${classes.registerStepsSpan} ${
+            step >= 1 ? classes.registerStepsSpanActive : ""
+          }`}
+        ></span>
+        <span
+          className={`${classes.registerStepsSpan} ${
+            step >= 2 ? classes.registerStepsSpanActive : ""
+          }`}
+        ></span>
+        <span
+          className={`${classes.registerStepsSpan} ${
+            step >= 3 ? classes.registerStepsSpanActive : ""
+          }`}
+        ></span>
+        <span
+          className={`${classes.registerStepsSpan} ${
+            step >= 4 ? classes.registerStepsSpanActive : ""
+          }`}
+        ></span>
       </div>
       <div>{stepsComponents[step].component}</div>
     </div>

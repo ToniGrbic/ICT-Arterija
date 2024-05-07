@@ -6,8 +6,12 @@ import ScheduleReminder from "../../components/ScheduleReminder/ScheduleReminder
 import EventsPreview from "../../components/Events/EventsPreview/EventsPreview";
 import ArrowRight from "../../icons/ArrowRight/ArrowRight";
 import BlogsPreview from "../../components/Blogs/BlogsPreview/BlogsPreview";
+import Cookies from "universal-cookie";
 
 const Home = () => {
+  const cookies = new Cookies(null, { path: "/" });
+  const user = cookies.get("user");
+  console.log(user);
   return (
     <>
       <AutoPlay />
