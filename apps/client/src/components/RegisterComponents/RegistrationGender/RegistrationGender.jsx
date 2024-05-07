@@ -1,7 +1,7 @@
 import { useState } from "react";
 import classes from "./index.module.css";
-import { useRegistration } from "../../providers/RegistrationProvider";
-import RegistrationConfirmPopup from "../registrationConfirmPopup/registrationConfirmPopup";
+import { useRegistration } from "../../../providers/RegistrationProvider";
+import RegistrationConfirmPopup from "../RegistrationConfirmPopup/RegistrationConfirmPopup";
 
 export default function RegistrationGender() {
   const [selectedGender, setSelectedGender] = useState(null);
@@ -35,7 +35,7 @@ export default function RegistrationGender() {
       })
       .then((data) => {
         console.log(data);
-        setPopupVisible(true); // Show the popup after successful registration
+        setPopupVisible(true);
       })
       .catch((error) => {
         console.error("There was a problem with your fetch operation:", error);

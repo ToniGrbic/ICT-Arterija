@@ -1,6 +1,6 @@
 import { useState } from "react";
 import classes from "./index.module.css";
-import { useRegistration } from "../../providers/RegistrationProvider";
+import { useRegistration } from "../../../providers/RegistrationProvider";
 
 export default function RegistrationUserName() {
   const [firstName, setFirstName] = useState("");

@@ -35,6 +35,7 @@ export default function Login() {
       })
       .then((data) => {
         console.log("Login successful:", data);
+        navigate("/");
       })
       .catch((error) => {
         console.error("There was a problem with your fetch operation:", error);

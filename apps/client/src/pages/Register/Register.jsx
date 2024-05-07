@@ -1,12 +1,12 @@
 import ArteriaLogo from "../../icons/ArteriaLogo/ArteriaLogo";
 import classes from "./index.module.css";
-import RegistrationPassword from "../../components/RegistrationPassword/RegistrationPassword";
-import RegistrationDate from "../../components/RegistrationDate/RegistrationDate";
+import RegistrationPassword from "../../components/RegisterComponents/RegistrationPassword/RegistrationPassword";
+import RegistrationDate from "../../components/RegisterComponents/RegistrationDate/RegistrationDate";
 import { useNavigate } from "react-router-dom";
 import { useRegistration } from "../../providers/RegistrationProvider";
-import RegistrationEmail from "../../components/RegistrationEmail/RegistrationEmail";
-import RegistrationUserName from "../../components/RegistrationUserName/RegistrationUserName";
-import RegistrationGender from "../../components/RegistrationGender/RegistrationGender";
+import RegistrationEmail from "../../components/RegisterComponents/RegistrationEmail/RegistrationEmail";
+import RegistrationUserName from "../../components/RegisterComponents/RegistrationUserName/RegistrationUserName";
+import RegistrationGender from "../../components/RegisterComponents/RegistrationGender/RegistrationGender";
 
 export default function Register() {
   const navigate = useNavigate();

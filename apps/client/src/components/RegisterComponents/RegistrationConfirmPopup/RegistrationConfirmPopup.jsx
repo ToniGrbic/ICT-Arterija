@@ -1,4 +1,4 @@
-import registrationPopupDecoration from "../../assets/registrationPopupDecoration.svg";
+import registrationPopupDecoration from "../../../assets/registrationPopupDecoration.svg";
 import classes from "./index.module.css";
 import { useNavigate } from "react-router-dom";
 

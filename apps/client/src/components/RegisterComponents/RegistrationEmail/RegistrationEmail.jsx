@@ -1,5 +1,5 @@
 import classes from "./index.module.css";
-import { useRegistration } from "../../providers/RegistrationProvider";
+import { useRegistration } from "../../../providers/RegistrationProvider";
 import { useState } from "react";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
