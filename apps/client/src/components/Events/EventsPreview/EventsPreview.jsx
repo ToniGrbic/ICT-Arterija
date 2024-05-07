@@ -1,34 +1,37 @@
 import React from "react";
 import styles from "./index.module.css";
 import EventImg from "../../../assets/images/event.png";
+import { useNavigate } from "react-router-dom";
 
-const handleEventClick = () => {
-  console.log("Event clicked");
+const handleEventClick = (e, id) => {
+  e.stopPropagation();
+  navigate(`/events/${id}`);
 };
 
 const handleMoreClick = () => {
-  console.log("More clicked");
+  navigate(`/events`);
 };
 
 const EventsPreview = () => {
+  const navigate = useNavigate();
   return (
-    <div>
+    <div className={styles["events-preview-wrapper"]}>
       <div className={styles["events-preview-title"]}>
         <h2>Događaji</h2>
         <p
-          onClick={handleMoreClick}
           className={styles["events-preview-more-btn"]}
+          onClick={handleMoreClick}
         >
           ...
         </p>
       </div>
 
       <div className={styles["events-preview-container"]}>
-        {Array.from({ length: 3 }).map((_, index) => (
+        {Array.from({ length: 3 }).map((_, id) => (
           <div
-            key={index}
+            key={id}
             className={styles["event-preview"]}
-            onClick={handleEventClick}
+            onClick={(e) => handleEventClick(e, id)}
           >
             <h3></h3>{" "}
             {/*zasada slika ima i naslov pa je u ovom slucaju prazan*/}
