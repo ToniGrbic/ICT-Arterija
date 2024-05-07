@@ -43,7 +43,7 @@ export class UsersService {
       role: user.role,
       blood_type: user.blood_type,
     };
-    return { token: this.jwtService.sign(payload) };
+    return { token: this.jwtService.sign(payload), ...payload };
   }
 
   async login(email: string, password: string) {

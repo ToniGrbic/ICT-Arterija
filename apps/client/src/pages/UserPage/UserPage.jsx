@@ -100,7 +100,8 @@ export default function UserPage() {
             {user.surname.charAt(0).toUpperCase() + user.surname.slice(1)}
           </h1>
           <p className={classes.userPoints}>
-            Regularan donor | {user.points} bodova
+            {verifiedDonations < 2 ? "Novi korisnik" : "Regularan donor"} |{" "}
+            {user.points} bodova
           </p>
         </div>
         <div className={classes.donationsContainer}>

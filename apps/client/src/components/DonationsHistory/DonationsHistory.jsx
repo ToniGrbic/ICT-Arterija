@@ -5,6 +5,13 @@ import Events from "../../assets/Pin.svg";
 import Calendar from "../../assets/Calendar.svg";
 
 const DonationsHistory = ({ donations }) => {
+  console.log(donations);
+  const EmptyDonations = () => (
+    <div className={classes.donationCard}>
+      <h2>Trenutačno nemate donacija</h2>
+    </div>
+  );
+
   return (
     <>
       <div className={classes.donationsHistorySection}>
@@ -27,6 +34,7 @@ const DonationsHistory = ({ donations }) => {
             </div>
           </div>
         ))}
+        {donations.length === 0 ? <EmptyDonations /> : <></>}
       </div>
     </>
   );
