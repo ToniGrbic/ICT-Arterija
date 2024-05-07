@@ -41,6 +41,7 @@ export class UsersService {
       surname: user.surname,
       points: user.points,
       role: user.role,
+      blood_type: user.blood_type,
     };
     return { token: this.jwtService.sign(payload) };
   }
@@ -66,6 +67,7 @@ export class UsersService {
       surname: user.surname,
       role: user.role,
       points: user.points,
+      blood_type: user.blood_type,
     };
 
     return { token: this.jwtService.sign(payload), ...payload };

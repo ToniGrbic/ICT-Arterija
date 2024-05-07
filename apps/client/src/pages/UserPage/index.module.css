@@ -5,11 +5,12 @@
 .userPageBackground {
   background-color: #e03943;
   border-radius: 0rem 0rem 1.25rem 1.25rem;
-  height: 240px;
 }
 
 .userPageBackground img {
-  margin: auto;
+  width: 100%;
+  height: auto;
+  margin-bottom: -5px;
 }
 
 .profilePicture {
@@ -19,7 +20,7 @@
   flex-shrink: 0;
   position: absolute;
   left: 1.75rem;
-  bottom: -2.25rem;
+  bottom: -2.5rem;
   border-radius: 5.8125rem;
   border: 3px solid #f3bc4d;
 }
@@ -42,4 +43,71 @@
   top: 3.5rem;
   right: 1rem;
   font-size: 1.5rem;
+}
+
+.userInfoContainer {
+  margin-top: 3.5rem;
+  padding: 0 1.5rem;
+}
+
+.userName {
+  color: #121b28;
+  font-family: "Rethink Sans";
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 2.125rem; /* 106.25% */
+  letter-spacing: -0.02rem;
+}
+
+.userPoints,
+.donationsHistoryHeadline {
+  color: #e03943;
+
+  /* Text/Copy */
+  font-family: "Rethink Sans";
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.3125rem; /* 150% */
+}
+
+.donationsContainer {
+  margin-top: 1rem;
+  border-radius: 0.625rem;
+  padding: 1rem 2.5rem;
+  background: var(--White, #fffcf8);
+  box-shadow: 0px 2px 8px 2px rgba(18, 27, 40, 0.04);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.donationsContainer h2 {
+  color: #000;
+  text-align: center;
+
+  /* Text/Podnaslov */
+  font-family: "Rethink Sans";
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.3125rem; /* 131.25% */
+}
+
+.donationsContainer p {
+  color: #000;
+  text-align: center;
+
+  font-family: "Rethink Sans";
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.3125rem; /* 150% */
+}
+
+.userBloodTypeBorder {
+  width: 1px;
+  height: 2.75rem;
+  background-color: #848282;
 }

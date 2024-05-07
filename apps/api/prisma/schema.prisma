@@ -65,6 +65,7 @@ model events {
 model centers {
   id        Int         @id @default(autoincrement())
   city_id   Int
+  address   String      @default("")
   name      String      @db.VarChar(255)
   image     String?     @db.VarChar(255)
   cities    cities      @relation(fields: [city_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "centers_city_id_foreign")

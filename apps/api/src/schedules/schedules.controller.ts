@@ -60,11 +60,11 @@ export class SchedulesController {
     return this.schedulesService.findByCenter(center_id);
   }
 
-  @Get('user')
+  @Get('user/:user_id')
   @ApiOkResponse({ type: [ScheduleEntity] })
   @UseGuards(UserAuthGuard)
-  findByUser(@Req() { user }) {
-    return this.schedulesService.findByUser(user.id);
+  findByUser(@Param('user_id', ParseIntPipe) user_id: number) {
+    return this.schedulesService.findByUser(user_id);
   }
 
   @Patch(':id')

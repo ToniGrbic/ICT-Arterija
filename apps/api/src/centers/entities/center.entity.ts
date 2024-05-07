@@ -11,5 +11,8 @@ export class centerEntity {
   name: string;
 
   @ApiProperty()
+  address: string;
+
+  @ApiProperty()
   image: string;
 }
