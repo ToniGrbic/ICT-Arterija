@@ -1,0 +1,45 @@
+.userHeader {
+  position: relative;
+}
+
+.userPageBackground {
+  background-color: #e03943;
+  border-radius: 0rem 0rem 1.25rem 1.25rem;
+  height: 240px;
+}
+
+.userPageBackground img {
+  margin: auto;
+}
+
+.profilePicture {
+  background-color: gray;
+  width: 5rem;
+  height: 5rem;
+  flex-shrink: 0;
+  position: absolute;
+  left: 1.75rem;
+  bottom: -2.25rem;
+  border-radius: 5.8125rem;
+  border: 3px solid #f3bc4d;
+}
+
+.backButton {
+  background: none;
+  color: white;
+  position: absolute;
+  border: none;
+  top: 3.5rem;
+  left: 1rem;
+  font-size: 1.5rem;
+}
+
+.settingsButton {
+  background: none;
+  color: white;
+  position: absolute;
+  border: none;
+  top: 3.5rem;
+  right: 1rem;
+  font-size: 1.5rem;
+}
