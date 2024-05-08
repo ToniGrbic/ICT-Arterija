@@ -4,6 +4,7 @@ import Events from "../../icons/Events/Events";
 import Rewards from "../../icons/Rewards/Rewards";
 import Profile from "../../icons/Profile/Profile";
 import styles from "./index.module.css";
+import { Link } from "react-router-dom";
 
 const MenuNavigation = () => {
   return (
@@ -11,10 +12,14 @@ const MenuNavigation = () => {
       <nav>
         <ul className={styles["menu-navigation-list"]}>
           <li>
-            <Home />
+            <Link to="/">
+              <Home />
+            </Link>
           </li>
           <li>
-            <Events />
+            <Link to="/events">
+              <Events />
+            </Link>
           </li>
           <li>
             <Rewards />
