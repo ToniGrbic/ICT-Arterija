@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./index.module.css";
 import ArteriaLogo from "../../../icons/ArteriaLogo/ArteriaLogo";
 import Notifications from "../../../icons/Notifications/Notifications";
 import MenuNavigation from "../../MenuNavigation/MenuNavigation";
-import { Outlet } from "react-router";
+import { Outlet, useLocation } from "react-router";
 import { useEvents } from "../../../providers/EventsProvider";
 import SplashScreen from "../../SplashScreen/SplashScreen";
 
 const MainLayout = () => {
   const [pageName, setPageName] = useState("Početna");
   const { isLoading } = useEvents();
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   if (isLoading) {
     return <SplashScreen />;
