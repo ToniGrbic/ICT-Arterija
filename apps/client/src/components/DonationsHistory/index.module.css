@@ -29,6 +29,16 @@
   gap: 0.6rem;
 }
 
+.donationCard h2 {
+  color: #000;
+  align-self: center;
+  font-family: "Rethink Sans";
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.3125rem; /* 131.25% */
+}
+
 .donationCard h3 {
   color: #000;
 
@@ -43,4 +53,21 @@
   height: 1px;
   width: 100%;
   background-color: rgba(18, 27, 40, 0.2);
+}
+
+.donationsHistoryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.moreDonationsButton {
+  border-radius: 0.625rem;
+  border: none;
+  background: var(--Zuta, #f3bc4d);
+  padding: 0 0.5rem;
+}
+
+.moreDonationsButton img {
+  margin-bottom: 2px;
 }

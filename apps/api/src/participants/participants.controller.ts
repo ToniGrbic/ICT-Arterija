@@ -8,7 +8,6 @@ import {
   Delete,
   ParseIntPipe,
   UseGuards,
-  Req,
 } from '@nestjs/common';
 import { ParticipantsService } from './participants.service';
 import { CreateParticipantDto } from './dto/create-participant.dto';
@@ -52,10 +51,10 @@ export class ParticipantsController {
     return this.participantsService.findByEvent(id);
   }
 
-  @Get('user')
+  @Get('user/:user_id')
   @ApiOkResponse({ type: participantEntity })
-  findByUser(@Req() { user }) {
-    return this.participantsService.findByUser(user.id);
+  findByUser(@Param('user_id', ParseIntPipe) user_id: number) {
+    return this.participantsService.findByUser(user_id);
   }
   @Patch(':id')
   @ApiOkResponse({ type: participantEntity })

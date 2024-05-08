@@ -63,11 +63,11 @@ export default function UserPage() {
       });
   }, [user.id, user.token]);
 
-  const verifiedDonations = donations.filter((donation) => {
-    return donation.is_valid === true && donation.is_finished === true;
-  });
-
-  console.log(verifiedDonations);
+  const verifiedDonations = donations
+    .filter(
+      (donation) => donation.is_valid === true && donation.is_finished === true
+    )
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
 
   return (
     <div>
@@ -100,8 +100,8 @@ export default function UserPage() {
             {user.surname.charAt(0).toUpperCase() + user.surname.slice(1)}
           </h1>
           <p className={classes.userPoints}>
-            {verifiedDonations < 2 ? "Novi korisnik" : "Regularan donor"} |{" "}
-            {user.points} bodova
+            {verifiedDonations.length < 2 ? "Novi korisnik" : "Regularan donor"}{" "}
+            | {user.points} bodova
           </p>
         </div>
         <div className={classes.donationsContainer}>
@@ -118,7 +118,7 @@ export default function UserPage() {
             <p>{user.blood_type === null ? "nepoznato" : user.blood_type}</p>
           </div>
         </div>
-        <DonationsHistory donations={verifiedDonations} />
+        <DonationsHistory donation={verifiedDonations[0]} />
       </div>
       <MenuNavigation />
     </div>

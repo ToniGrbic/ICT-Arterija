@@ -18,11 +18,14 @@ model blogs {
 }
 
 model participants {
-  id              Int    @id @default(autoincrement())
+  id              Int     @id @default(autoincrement())
   user_id         Int
   event_id        Int
-  donation_events events @relation(fields: [event_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "participants_event_id_foreign")
-  user            users  @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "participants_user_id_foreign")
+  is_working      Boolean @default(false)
+  is_finished     Boolean @default(false)
+  is_valid        Boolean @default(true)
+  donation_events events  @relation(fields: [event_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "participants_event_id_foreign")
+  user            users   @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "participants_user_id_foreign")
 }
 
 model rewards {

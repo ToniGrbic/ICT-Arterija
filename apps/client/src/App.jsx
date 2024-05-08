@@ -5,6 +5,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import UserPage from "./pages/UserPage/UserPage";
+import DonationsHistoryPage from "./pages/DonationsHistoryPage/DonationsHistoryPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/user" element={<UserPage />} />
+          <Route path="/donations-history" element={<DonationsHistoryPage />} />
         </Routes>
       </BrowserRouter>
     </>
