@@ -48,7 +48,12 @@ export default function SettingsPage() {
         <img src={EmailBlack} alt="" />
         <p>Promjenite Vaš email</p>
       </div>
-      <div className={classes.settingContainer}>
+      <div
+        className={classes.settingContainer}
+        onClick={() => {
+          navigate("/change-password");
+        }}
+      >
         <img src={PasswordBlack} alt="" />
         <p>Promjenite Vašu zaporku</p>
       </div>

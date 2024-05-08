@@ -22,6 +22,8 @@ import {
 } from '@nestjs/swagger';
 import { AdminAuthGuard } from './guards/admin-auth.guard';
 import { StaffOrAdminAuthGuard } from './guards/staff-or-admin-auth.guard';
+import { UserAuthGuard } from './guards/user-auth.guard';
+import { ChangePasswordUserDto } from './dto/change-password-user.dto';
 
 @Controller('users')
 @ApiTags('users')
@@ -84,6 +86,17 @@ export class UsersController {
     return this.usersService.findOne(+id);
   }
 
+  @Post('/check-password/:id')
+  @ApiBearerAuth()
+  @UseGuards(UserAuthGuard)
+  @ApiOkResponse({ type: Boolean })
+  checkPassword(
+    @Param('id') id: string,
+    @Body() { password }: ChangePasswordUserDto,
+  ) {
+    return this.usersService.checkPassword(+id, password);
+  }
+
   @Get('/email/:email')
   @ApiOkResponse({ type: UserEntity })
   findByEmail(@Param('email') email: string) {
@@ -92,7 +105,7 @@ export class UsersController {
 
   @Patch(':id')
   @ApiBearerAuth()
-  @UseGuards(StaffOrAdminAuthGuard)
+  @UseGuards(UserAuthGuard)
   @ApiOkResponse({ type: UserEntity })
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(+id, updateUserDto);

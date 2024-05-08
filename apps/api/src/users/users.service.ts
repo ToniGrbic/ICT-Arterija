@@ -89,14 +89,32 @@ export class UsersService {
     return this.prisma.users.findUnique({ where: { email } });
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
+  async update(id: number, updateUserDto: UpdateUserDto) {
+    const dataToUpdate: any = { ...updateUserDto };
+
+    if (updateUserDto.password) {
+      const saltRounds = 10;
+      const hashedPassword = await hash(updateUserDto.password, saltRounds);
+      dataToUpdate.password = hashedPassword;
+    }
+
     return this.prisma.users.update({
       where: { id },
-      data: updateUserDto,
+      data: dataToUpdate,
     });
   }
 
   remove(id: number) {
     return this.prisma.users.delete({ where: { id } });
+  }
+
+  async checkPassword(id: number, password: string) {
+    const user = await this.prisma.users.findUnique({ where: { id } });
+
+    if (!user) {
+      throw new BadRequestException('User not found');
+    }
+
+    return compare(password, user.password);
   }
 }

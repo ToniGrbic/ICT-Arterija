@@ -10,6 +10,7 @@ import Event from "./pages/Event/Event";
 import UserPage from "./pages/UserPage/UserPage";
 import DonationsHistoryPage from "./pages/DonationsHistoryPage/DonationsHistoryPage";
 import SettingsPage from "./pages/SettingsPage/SettingsPage";
+import ChangePasswordPage from "./pages/ChangePasswordPage/ChangePasswordPage";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
               element={<DonationsHistoryPage />}
             />
             <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/change-password" element={<ChangePasswordPage />} />
           </Routes>
         </EventsProvider>
       </BrowserRouter>
