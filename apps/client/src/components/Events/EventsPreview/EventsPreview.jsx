@@ -1,19 +1,20 @@
 import React from "react";
 import styles from "./index.module.css";
-import EventImg from "../../../assets/images/event.png";
 import { useNavigate } from "react-router-dom";
-
-const handleEventClick = (e, id) => {
-  e.stopPropagation();
-  navigate(`/events/${id}`);
-};
-
-const handleMoreClick = () => {
-  navigate(`/events`);
-};
-
+import { useEvents } from "../../../providers/EventsProvider";
 const EventsPreview = () => {
   const navigate = useNavigate();
+  const { events } = useEvents();
+
+  const handleEventClick = (e, event) => {
+    e.stopPropagation();
+    navigate(`/events/${event.id}`, { state: event });
+  };
+
+  const handleMoreClick = () => {
+    navigate(`/events`);
+  };
+
   return (
     <div className={styles["events-preview-wrapper"]}>
       <div className={styles["events-preview-title"]}>
@@ -27,15 +28,14 @@ const EventsPreview = () => {
       </div>
 
       <div className={styles["events-preview-container"]}>
-        {Array.from({ length: 3 }).map((_, id) => (
+        {events.map((event) => (
           <div
-            key={id}
+            key={event.id}
             className={styles["event-preview"]}
-            onClick={(e) => handleEventClick(e, id)}
+            onClick={(e) => handleEventClick(e, event)}
           >
-            <h3></h3>{" "}
-            {/*zasada slika ima i naslov pa je u ovom slucaju prazan*/}
-            <img height={150} src={EventImg} />
+            <h3>{event.location}</h3>
+            <img height={150} width={150} src={event?.image} />
           </div>
         ))}
       </div>
