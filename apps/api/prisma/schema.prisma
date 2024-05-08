@@ -55,9 +55,11 @@ model user_rewards {
 model events {
   id           Int            @id @default(autoincrement())
   location     String         @db.VarChar(255)
+  address       String         @db.VarChar(255)
   city_id      Int
   date         DateTime       @db.Date
   organizer    String         @db.VarChar(255)
+  image        String?        @db.VarChar(255)
   city         cities         @relation(fields: [city_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "events_city_id_foreign")
   participants participants[]
 }

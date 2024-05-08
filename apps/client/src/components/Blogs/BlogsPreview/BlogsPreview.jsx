@@ -4,7 +4,7 @@ import BlogSvg from "../../../assets/Blog1.svg";
 
 const BlogsPreview = () => {
   return (
-    <>
+    <div className={styles["blogs-preview-wrapper"]}>
       <h2>Blogovi</h2>
       <div className={styles["blogs-preview-container"]}>
         <div className={styles["blog-preview-card"]}>
@@ -21,7 +21,7 @@ const BlogsPreview = () => {
           </p>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

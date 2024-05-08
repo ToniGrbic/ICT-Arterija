@@ -7,6 +7,10 @@ export class CreateEventDto {
   location: string;
 
   @ApiProperty()
+  @IsString()
+  address: string;
+
+  @ApiProperty()
   @IsNumber()
   city_id: number;
 
@@ -17,4 +21,8 @@ export class CreateEventDto {
   @ApiProperty()
   @IsString()
   organizer: string;
+
+  @ApiProperty({ required: false, default: 'https://via.placeholder.com/150' })
+  @IsString()
+  image: string;
 }

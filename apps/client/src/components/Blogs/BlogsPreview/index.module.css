@@ -1,3 +1,7 @@
+.blogs-preview-wrapper {
+  margin-top: 170px;
+}
+
 .blogs-preview-container {
   display: flex;
   flex-direction: column;

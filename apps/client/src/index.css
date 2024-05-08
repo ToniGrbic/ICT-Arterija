@@ -3,8 +3,22 @@
   src: url("./assets/fonts/RethinkSans-VariableFont_wght.ttf");
 }
 
+:root {
+  --red-color: #e03943;
+  --white-color: #fffcf8;
+  --black-color: #121b28;
+  --yellow-color: #f9d342;
+}
+
 body {
-  background-color: #fffcf8;
+  background-color: #fff;
   font-family: Rethink Sans;
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
 }
