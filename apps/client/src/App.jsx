@@ -11,6 +11,7 @@ import UserPage from "./pages/UserPage/UserPage";
 import DonationsHistoryPage from "./pages/DonationsHistoryPage/DonationsHistoryPage";
 import SettingsPage from "./pages/SettingsPage/SettingsPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage/ChangePasswordPage";
+import ChangeEmailPage from "./pages/ChangeEmailPage/ChangeEmailPage";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             />
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/change-password" element={<ChangePasswordPage />} />
+            <Route path="/change-email" element={<ChangeEmailPage />} />
           </Routes>
         </EventsProvider>
       </BrowserRouter>
