@@ -4,11 +4,13 @@ import BlogSvg from "../../assets/Blog1.svg";
 import styles from "./index.module.css";
 
 const ArteriaBlog = () => {
-  const title =
-    " Nit'sam niti ću! Hmm, ili pak hoću? Doniraj krv i budi kapljica koja život znači!";
+  const title = " Arteria - doniraj krv i budi kapljica koja život znači!";
 
   return (
-    <BlogsLayout title={title} image={BlogSvg}>
+    <BlogsLayout
+      title={title}
+      image={"https://i.ibb.co/qN7kK78/Picture1.png" || BlogSvg}
+    >
       <p>
         Medicina je, možemo primijetiti, kroz čovječanstvo uvelike napredovala.
         Svi bismo se oko toga složili, no jedan problem ne jenjava. Riječ je o
@@ -29,13 +31,17 @@ const ArteriaBlog = () => {
       </p>
       <h3 className={styles["blogs-paragraph-title"]}>Startup budućnosti</h3>
       <p>
-        Zajedničkim snagama stvoren je projekt vrijedan pozornosti. Arterija -
+        Zajedničkim snagama stvoren je projekt vrijedan pozornosti. Arteria-
         tvrtka koja se bavi poticanjem na darivanje krvi i koja na takav način
         želi osvijestiti sve oni koji su sposobni darovati krv bila je nit
         vodilja. Bio to poznanik ili ne, lijepo je znati da netko pridonosi
         produljenju nečijeg života i briga o tuđem zdravlju. Kao što arterija
-        pumpa krv iz srca do drugih dijelova tijela, tako je zajednički cilj
-        povezati srca da kucaju kao jedno jer svaki život je jednako vrijedan!
+        pumpa krv iz srca do drugih dijelova tijela, tako je zajednički{" "}
+        <b>cilj</b>
+        povezati srca da kucaju kao jedno{" "}
+        <u>
+          <i>jer svaki život je jednako vrijedan!</i>
+        </u>
       </p>
       <h3 className={styles["blogs-paragraph-title"]}>Poticanje humanosti</h3>
       <p>
@@ -66,7 +72,12 @@ const ArteriaBlog = () => {
         darovati krv nije opasno, ali mogu spasiti nečiji život. izdvojiti
         nekoliko minuta može biti od presudne važnosti za pojedinca, a
         cjelokupan proces od samog dolaska traje oko 30 minuta i potpuno je
-        bezbolan.
+        bezbolan. <b>Pokaži solidarnost i prijavi se za doniranje krvi!</b>
+      </p>
+      <p>Keywords:</p>
+      <p>
+        Darivanje krvi, medicina, zdravstvo, humanost, krv, arterija, vene,
+        život
       </p>
     </BlogsLayout>
   );
