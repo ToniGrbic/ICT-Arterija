@@ -24,8 +24,7 @@ const BlogsPreview = () => {
         >
           <img src={BlogSvg} className={styles["blog-preview-card-img"]} />
           <p className={styles["blog-preview-title"]}>
-            Nit'sam niti ću! Hmm, ili pak hoću? Doniraj krv i budi kapljica koja
-            život znači!
+            Arteria - doniraj krv i budi kapljica koja život znači!
           </p>
         </div>
         <div
