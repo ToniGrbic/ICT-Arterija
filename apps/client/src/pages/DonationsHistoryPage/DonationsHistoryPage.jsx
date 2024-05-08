@@ -6,16 +6,22 @@ import { useState, useEffect } from "react";
 import Clock from "../../assets/Clock.svg";
 import Events from "../../assets/Pin.svg";
 import Calendar from "../../assets/Calendar.svg";
+import fetchDonations from "../../fetchDonations";
 
 export default function DonationsHistoryPage() {
   const navigate = useNavigate();
   const cookies = new Cookies(null, { path: "/" });
-  const data = cookies.get("donations");
+  const user = cookies.get("user");
+  const [data, setData] = useState({ events: [], donations: [] });
   const [mergedData, setMergedData] = useState([]);
-  const [hasExecutedEffect, setHasExecutedEffect] = useState(false); // New flag
 
   useEffect(() => {
-    if (data && !hasExecutedEffect) {
+    fetchDonations(setData, user);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (data) {
       const mergedDonations = data.donations.map((donation) => ({
         centerName: donation.centerName,
         centerAddress: donation.centerAddress,
@@ -36,11 +42,8 @@ export default function DonationsHistoryPage() {
       mergedDataArray.sort((a, b) => new Date(b.date) - new Date(a.date));
 
       setMergedData(mergedDataArray);
-      setHasExecutedEffect(true);
     }
-  }, [data, hasExecutedEffect]);
-
-  console.log(mergedData);
+  }, [data]);
 
   const EmptyDonations = () => (
     <div className={classes.donationCard}>
