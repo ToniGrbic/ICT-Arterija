@@ -139,7 +139,6 @@ export default function UserPage() {
     .filter((event) => event.is_valid === true)
     .sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  console.log(data);
   cookies.set("donations", { donations, events }, { path: "/" });
 
   return (

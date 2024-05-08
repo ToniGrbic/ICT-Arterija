@@ -8,10 +8,11 @@ const Profile = () => {
   const navigate = useNavigate();
 
   const handleProfileClick = () => {
-    if (user == null) {
+    if (user === null || user === undefined) {
       navigate("/login");
+    } else {
+      navigate("/user");
     }
-    navigate("/user");
   };
 
   return <img src={ProfileSvg} alt="Profile" onClick={handleProfileClick} />;
