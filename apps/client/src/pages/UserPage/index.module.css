@@ -25,16 +25,6 @@
   border: 3px solid #f3bc4d;
 }
 
-.backButton {
-  background: none;
-  color: white;
-  position: absolute;
-  border: none;
-  top: 3.5rem;
-  left: 1rem;
-  font-size: 1.5rem;
-}
-
 .settingsButton {
   background: none;
   color: white;

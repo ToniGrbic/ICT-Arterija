@@ -9,6 +9,7 @@ import Events from "./pages/Events/Events";
 import Event from "./pages/Event/Event";
 import UserPage from "./pages/UserPage/UserPage";
 import DonationsHistoryPage from "./pages/DonationsHistoryPage/DonationsHistoryPage";
+import SettingsPage from "./pages/SettingsPage/SettingsPage";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
               path="/donations-history"
               element={<DonationsHistoryPage />}
             />
+            <Route path="/settings" element={<SettingsPage />} />
           </Routes>
         </EventsProvider>
       </BrowserRouter>
