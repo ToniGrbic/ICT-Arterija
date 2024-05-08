@@ -2,12 +2,14 @@ import { useState } from "react";
 import classes from "./index.module.css";
 import { useRegistration } from "../../providers/RegistrationProvider";
 import RegistrationConfirmPopup from "../registrationConfirmPopup/registrationConfirmPopup";
+import Cookies from "universal-cookie";
 
 export default function RegistrationGender() {
   const [selectedGender, setSelectedGender] = useState(null);
   const [error, setError] = useState(null);
   const [isPopupVisible, setPopupVisible] = useState(false);
   const { updateData, userData } = useRegistration();
+  const cookies = new Cookies(null, { path: "/" });
 
   const handleGenderSelection = (gender) => {
     setSelectedGender(gender);
@@ -35,6 +37,7 @@ export default function RegistrationGender() {
       })
       .then((data) => {
         console.log(data);
+        cookies.set("token", data.token);
         setPopupVisible(true); // Show the popup after successful registration
       })
       .catch((error) => {

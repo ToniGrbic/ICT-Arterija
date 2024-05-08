@@ -2,12 +2,14 @@ import { useState } from "react";
 import arteriaLogo from "../../assets/arteriaLogo.svg";
 import classes from "./index.module.css";
 import { useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
 
 export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const cookies = new Cookies(null, { path: "/" });
 
   const handleLogin = () => {
     if (!email || !password) {
@@ -35,6 +37,8 @@ export default function Login() {
       })
       .then((data) => {
         console.log("Login successful:", data);
+        cookies.set("token", data.token);
+        navigate("/");
       })
       .catch((error) => {
         console.error("There was a problem with your fetch operation:", error);
