@@ -9,6 +9,8 @@ import Events from "./pages/Events/Events";
 import Event from "./pages/Event/Event";
 import UserPage from "./pages/UserPage/UserPage";
 import DonationsHistoryPage from "./pages/DonationsHistoryPage/DonationsHistoryPage";
+import ArteriaBlog from "./pages/Blogs/ArteriaBlog";
+import DonationInfoBlog from "./pages/Blogs/DonationInfoBlog";
 
 function App() {
   return (
@@ -16,10 +18,15 @@ function App() {
       <BrowserRouter>
         <EventsProvider>
           <Routes>
-            <Route element={<MainLayout />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/events" element={<Events />} />
-              <Route path="/events/:id" element={<Event />} />
+            <Route path="/" element={<MainLayout />}>
+              <Route index element={<Home />} />
+              <Route path="events" element={<Events />} />
+              <Route path="events/:id" element={<Event />} />
+              <Route path="blogs/arteria" element={<ArteriaBlog />} />
+              <Route
+                path="blogs/doniranje-info"
+                element={<DonationInfoBlog />}
+              />
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
