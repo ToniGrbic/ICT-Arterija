@@ -9,40 +9,52 @@ import { useState, useEffect } from "react";
 import DonationsHistory from "../../components/DonationsHistory/DonationsHistory";
 
 export default function UserPage() {
-  const [donations, setDonations] = useState([]);
   const navigate = useNavigate();
   const cookies = new Cookies(null, { path: "/" });
   const user = cookies.get("user");
 
+  const [data, setData] = useState({ events: [], donations: [] });
+  const { events, donations } = data;
+
   useEffect(() => {
-    fetch(`/api/schedules/user/${user.id}`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
+    const fetchData = async () => {
+      try {
+        const schedulesResponse = await fetch(
+          `/api/schedules/user/${user.id}`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        if (!schedulesResponse.ok) {
           throw new Error("Network response was not ok");
         }
-        return response.json();
-      })
-      .then((data) => {
-        setDonations(data);
-        data.forEach((donation) => {
-          fetch(`/api/centers/${donation.center_id}`, {
-            method: "GET",
-          })
-            .then((response) => {
-              if (!response.ok) {
+
+        const schedulesData = await schedulesResponse.json();
+        setData((prevData) => ({ ...prevData, donations: schedulesData }));
+
+        await Promise.all(
+          schedulesData.map(async (donation) => {
+            try {
+              const centerResponse = await fetch(
+                `/api/centers/${donation.center_id}`,
+                {
+                  method: "GET",
+                }
+              );
+
+              if (!centerResponse.ok) {
                 throw new Error("Network response was not ok");
               }
-              return response.json();
-            })
-            .then((centerData) => {
-              setDonations((prevDonations) =>
-                prevDonations.map((prevDonation) =>
+
+              const centerData = await centerResponse.json();
+              setData((prevData) => ({
+                ...prevData,
+                donations: prevData.donations.map((prevDonation) =>
                   prevDonation.id === donation.id
                     ? {
                         ...prevDonation,
@@ -50,17 +62,71 @@ export default function UserPage() {
                         centerName: centerData.name,
                       }
                     : prevDonation
-                )
-              );
-            })
-            .catch((error) => {
+                ),
+              }));
+            } catch (error) {
               console.error("Error fetching center address:", error);
-            });
-        });
-      })
-      .catch((error) => {
+            }
+          })
+        );
+
+        const participantsResponse = await fetch(
+          `/api/participants/user/${user.id}`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        if (!participantsResponse.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const participantsData = await participantsResponse.json();
+        setData((prevData) => ({ ...prevData, events: participantsData }));
+
+        await Promise.all(
+          participantsData.map(async (participant) => {
+            try {
+              const eventResponse = await fetch(
+                `/api/events/${participant.event_id}`,
+                {
+                  method: "GET",
+                }
+              );
+
+              if (!eventResponse.ok) {
+                throw new Error("Network response was not ok");
+              }
+
+              const eventData = await eventResponse.json();
+              setData((prevData) => ({
+                ...prevData,
+                events: prevData.events.map((prevEvent) =>
+                  prevEvent.event_id === eventData.id
+                    ? {
+                        ...prevEvent,
+                        centerAddress: eventData.location,
+                        centerName: eventData.organizer,
+                        date: eventData.date,
+                      }
+                    : prevEvent
+                ),
+              }));
+            } catch (error) {
+              console.error("Error fetching event data:", error);
+            }
+          })
+        );
+      } catch (error) {
         console.error("There was a problem with your fetch operation:", error);
-      });
+      }
+    };
+
+    fetchData();
   }, [user.id, user.token]);
 
   const verifiedDonations = donations
@@ -68,6 +134,13 @@ export default function UserPage() {
       (donation) => donation.is_valid === true && donation.is_finished === true
     )
     .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  const verifiedEvents = events
+    .filter((event) => event.is_valid === true)
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  console.log(data);
+  cookies.set("donations", { donations, events }, { path: "/" });
 
   return (
     <div>
@@ -108,7 +181,7 @@ export default function UserPage() {
           <div>
             <h2>Darivanja</h2>
             <p>
-              {verifiedDonations.length} put
+              {verifiedDonations.length + verifiedEvents.length} put
               {verifiedDonations.length === 1 ? "" : "a"}
             </p>
           </div>
