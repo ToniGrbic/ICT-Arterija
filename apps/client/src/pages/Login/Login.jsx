@@ -37,7 +37,7 @@ export default function Login() {
       })
       .then((data) => {
         console.log("Login successful:", data);
-        cookies.set("token", data.token);
+        cookies.set("user", data, { path: "/" }, { maxAge: 86400 });
         navigate("/");
       })
       .catch((error) => {

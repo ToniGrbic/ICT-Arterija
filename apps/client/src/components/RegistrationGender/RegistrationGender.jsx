@@ -37,7 +37,7 @@ export default function RegistrationGender() {
       })
       .then((data) => {
         console.log(data);
-        cookies.set("token", data.token);
+        cookies.set("user", data, { path: "/" }, { maxAge: 86400 });
         setPopupVisible(true); // Show the popup after successful registration
       })
       .catch((error) => {
