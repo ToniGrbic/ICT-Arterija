@@ -15,6 +15,10 @@ export default function DonationsHistoryPage() {
   const [data, setData] = useState({ events: [], donations: [] });
   const [mergedData, setMergedData] = useState([]);
 
+  if (user === null || user === undefined) {
+    navigate("/login");
+  }
+
   useEffect(() => {
     fetchDonations(setData, user);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -51,6 +55,8 @@ export default function DonationsHistoryPage() {
     </div>
   );
 
+  console.log(mergedData);
+
   return (
     <div className={classes.donationsHistoryPage}>
       <div className={classes.donationsHistoryPageHeader}>
@@ -64,7 +70,7 @@ export default function DonationsHistoryPage() {
         <h1>Povijest Darivanja</h1>
       </div>
       <div>
-        {!mergedData ? (
+        {mergedData.length === 0 ? (
           <EmptyDonations />
         ) : (
           mergedData.map((donation, index) => (
