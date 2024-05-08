@@ -1,7 +1,7 @@
 import { useState } from "react";
-import CustomDatePicker from "../DatePicker/DatePicker";
+import CustomDatePicker from "../../DatePicker/DatePicker";
 import classes from "./index.module.css";
-import { useRegistration } from "../../providers/RegistrationProvider";
+import { useRegistration } from "../../../providers/RegistrationProvider";
 
 export default function RegistrationDate() {
   const [parentSelectedDate, setParentSelectedDate] = useState(null);

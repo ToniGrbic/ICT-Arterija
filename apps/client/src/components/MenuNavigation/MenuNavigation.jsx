@@ -1,4 +1,3 @@
-import React from "react";
 import Home from "../../icons/Home/Home";
 import Events from "../../icons/Events/Events";
 import Rewards from "../../icons/Rewards/Rewards";

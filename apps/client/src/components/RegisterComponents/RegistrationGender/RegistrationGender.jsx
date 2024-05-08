@@ -1,7 +1,7 @@
 import { useState } from "react";
 import classes from "./index.module.css";
-import { useRegistration } from "../../providers/RegistrationProvider";
-import RegistrationConfirmPopup from "../registrationConfirmPopup/registrationConfirmPopup";
+import { useRegistration } from "../../../providers/RegistrationProvider";
+import RegistrationConfirmPopup from "../RegistrationConfirmPopup/RegistrationConfirmPopup";
 import Cookies from "universal-cookie";
 
 export default function RegistrationGender() {
@@ -38,7 +38,7 @@ export default function RegistrationGender() {
       .then((data) => {
         console.log(data);
         cookies.set("user", data, { path: "/" }, { maxAge: 86400 });
-        setPopupVisible(true); // Show the popup after successful registration
+        setPopupVisible(true);
       })
       .catch((error) => {
         console.error("There was a problem with your fetch operation:", error);

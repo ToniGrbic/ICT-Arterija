@@ -7,6 +7,8 @@ import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import Events from "./pages/Events/Events";
 import Event from "./pages/Event/Event";
+import UserPage from "./pages/UserPage/UserPage";
+import DonationsHistoryPage from "./pages/DonationsHistoryPage/DonationsHistoryPage";
 
 function App() {
   return (
@@ -21,6 +23,11 @@ function App() {
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/user" element={<UserPage />} />
+            <Route
+              path="/donations-history"
+              element={<DonationsHistoryPage />}
+            />
           </Routes>
         </EventsProvider>
       </BrowserRouter>

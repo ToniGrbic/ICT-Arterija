@@ -18,11 +18,14 @@ model blogs {
 }
 
 model participants {
-  id              Int    @id @default(autoincrement())
+  id              Int     @id @default(autoincrement())
   user_id         Int
   event_id        Int
-  donation_events events @relation(fields: [event_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "participants_event_id_foreign")
-  user            users  @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "participants_user_id_foreign")
+  is_working      Boolean @default(false)
+  is_finished     Boolean @default(false)
+  is_valid        Boolean @default(true)
+  donation_events events  @relation(fields: [event_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "participants_event_id_foreign")
+  user            users   @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "participants_user_id_foreign")
 }
 
 model rewards {
@@ -67,6 +70,7 @@ model events {
 model centers {
   id        Int         @id @default(autoincrement())
   city_id   Int
+  address   String      @default("")
   name      String      @db.VarChar(255)
   image     String?     @db.VarChar(255)
   cities    cities      @relation(fields: [city_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "centers_city_id_foreign")

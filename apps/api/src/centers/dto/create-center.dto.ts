@@ -12,6 +12,10 @@ export class CreateCenterDto {
 
   @ApiProperty()
   @IsString()
+  address: string;
+
+  @ApiProperty()
+  @IsString()
   @IsOptional()
   image: string;
 }

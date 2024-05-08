@@ -1,4 +1,4 @@
-import { useRegistration } from "../../providers/RegistrationProvider";
+import { useRegistration } from "../../../providers/RegistrationProvider";
 import classes from "./index.module.css";
 import { useState } from "react";
 

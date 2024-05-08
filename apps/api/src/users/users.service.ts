@@ -37,9 +37,13 @@ export class UsersService {
     const payload = {
       id: user.id,
       email: user.email,
+      name: user.name,
+      surname: user.surname,
+      points: user.points,
       role: user.role,
+      blood_type: user.blood_type,
     };
-    return { token: this.jwtService.sign(payload) };
+    return { token: this.jwtService.sign(payload), ...payload };
   }
 
   async login(email: string, password: string) {
@@ -60,7 +64,10 @@ export class UsersService {
       id: user.id,
       email: user.email,
       name: user.name,
+      surname: user.surname,
       role: user.role,
+      points: user.points,
+      blood_type: user.blood_type,
     };
 
     return { token: this.jwtService.sign(payload), ...payload };

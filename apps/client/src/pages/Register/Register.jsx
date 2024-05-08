@@ -1,12 +1,12 @@
 import ArteriaLogo from "../../icons/ArteriaLogo/ArteriaLogo";
 import classes from "./index.module.css";
-import RegistrationPassword from "../../components/RegistrationPassword/RegistrationPassword";
-import RegistrationDate from "../../components/RegistrationDate/RegistrationDate";
+import RegistrationPassword from "../../components/RegisterComponents/RegistrationPassword/RegistrationPassword";
+import RegistrationDate from "../../components/RegisterComponents/RegistrationDate/RegistrationDate";
 import { useNavigate } from "react-router-dom";
 import { useRegistration } from "../../providers/RegistrationProvider";
-import RegistrationEmail from "../../components/RegistrationEmail/RegistrationEmail";
-import RegistrationUserName from "../../components/RegistrationUserName/RegistrationUserName";
-import RegistrationGender from "../../components/RegistrationGender/RegistrationGender";
+import RegistrationEmail from "../../components/RegisterComponents/RegistrationEmail/RegistrationEmail";
+import RegistrationUserName from "../../components/RegisterComponents/RegistrationUserName/RegistrationUserName";
+import RegistrationGender from "../../components/RegisterComponents/RegistrationGender/RegistrationGender";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -44,32 +44,9 @@ export default function Register() {
             {"<"}
           </button>
         )}
-        <div className={classes.stepsContainer}>
-          <span
-            className={`${classes.registerStepsSpan} ${
-              step >= 0 ? classes.registerStepsSpanActive : ""
-            }`}
-          ></span>
-          <span
-            className={`${classes.registerStepsSpan} ${
-              step >= 1 ? classes.registerStepsSpanActive : ""
-            }`}
-          ></span>
-          <span
-            className={`${classes.registerStepsSpan} ${
-              step >= 2 ? classes.registerStepsSpanActive : ""
-            }`}
-          ></span>
-          <span
-            className={`${classes.registerStepsSpan} ${
-              step >= 3 ? classes.registerStepsSpanActive : ""
-            }`}
-          ></span>
-          <span
-            className={`${classes.registerStepsSpan} ${
-              step >= 4 ? classes.registerStepsSpanActive : ""
-            }`}
-          ></span>
+        <div className={classes.stepTitleContainer}>
+          <p className={classes.stepLogo}>{step + 1}</p>
+          <h1>{stepsComponents[step].title}</h1>
         </div>
         <button
           className={classes.exitButton}
@@ -80,9 +57,32 @@ export default function Register() {
           X
         </button>
       </div>
-      <div className={classes.stepTitleContainer}>
-        <p className={classes.stepLogo}>{step + 1}</p>
-        <h1>{stepsComponents[step].title}</h1>
+      <div className={classes.stepsContainer}>
+        <span
+          className={`${classes.registerStepsSpan} ${
+            step >= 0 ? classes.registerStepsSpanActive : ""
+          }`}
+        ></span>
+        <span
+          className={`${classes.registerStepsSpan} ${
+            step >= 1 ? classes.registerStepsSpanActive : ""
+          }`}
+        ></span>
+        <span
+          className={`${classes.registerStepsSpan} ${
+            step >= 2 ? classes.registerStepsSpanActive : ""
+          }`}
+        ></span>
+        <span
+          className={`${classes.registerStepsSpan} ${
+            step >= 3 ? classes.registerStepsSpanActive : ""
+          }`}
+        ></span>
+        <span
+          className={`${classes.registerStepsSpan} ${
+            step >= 4 ? classes.registerStepsSpanActive : ""
+          }`}
+        ></span>
       </div>
       <div>{stepsComponents[step].component}</div>
     </div>
