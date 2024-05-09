@@ -41,20 +41,12 @@ export default function UserPage() {
             <img src={UserPageBackground} alt="" />
           </div>
           <img src={Profile} alt="" className={classes.profilePicture} />
-          <button
-            className={classes.backButton}
-            onClick={() => {
-              navigate("/");
-            }}
-          >
-            {"<"}
-          </button>
           <img
             src={Settings}
             alt=""
             className={classes.settingsButton}
             onClick={() => {
-              navigate("/");
+              navigate("/settings");
             }}
           />
         </div>

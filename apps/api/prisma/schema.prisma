@@ -58,7 +58,7 @@ model user_rewards {
 model events {
   id           Int            @id @default(autoincrement())
   location     String         @db.VarChar(255)
-  address       String         @db.VarChar(255)
+  address      String         @db.VarChar(255)
   city_id      Int
   date         DateTime       @db.Date
   organizer    String         @db.VarChar(255)
@@ -116,6 +116,8 @@ model users {
   schedules          schedules[]
   user_rewards       user_rewards[]
   centers            centers?       @relation(fields: [center_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "users_center_id_foreign")
+  profile_photo      Photos?        @relation(fields: [photosId], references: [id])
+  photosId           Int?
 }
 
 enum Role {
@@ -138,4 +140,12 @@ enum BloodTypes {
 enum Gender {
   Male
   Female
+}
+
+model Photos {
+  id        Int     @id @default(autoincrement())
+  filename  String
+  mimeType  String
+  imageData Bytes
+  users     users[]
 }

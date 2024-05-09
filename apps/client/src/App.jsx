@@ -9,6 +9,10 @@ import Events from "./pages/Events/Events";
 import Event from "./pages/Event/Event";
 import UserPage from "./pages/UserPage/UserPage";
 import DonationsHistoryPage from "./pages/DonationsHistoryPage/DonationsHistoryPage";
+import SettingsPage from "./pages/SettingsPage/SettingsPage";
+import ChangePasswordPage from "./pages/ChangePasswordPage/ChangePasswordPage";
+import ChangeEmailPage from "./pages/ChangeEmailPage/ChangeEmailPage";
+import ChangePhotoPage from "./pages/ChangePhotoPage/ChangePhotoPage";
 import ArteriaBlog from "./pages/Blogs/ArteriaBlog";
 import DonationInfoBlog from "./pages/Blogs/DonationInfoBlog";
 
@@ -35,6 +39,10 @@ function App() {
               path="/donations-history"
               element={<DonationsHistoryPage />}
             />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/change-password" element={<ChangePasswordPage />} />
+            <Route path="/change-email" element={<ChangeEmailPage />} />
+            <Route path="/change-photo" element={<ChangePhotoPage />} />
           </Routes>
         </EventsProvider>
       </BrowserRouter>
