@@ -33,4 +33,7 @@ export class UserEntity {
 
   @ApiProperty()
   updatedAt: Date;
+
+  @ApiProperty()
+  photosId: number;
 }

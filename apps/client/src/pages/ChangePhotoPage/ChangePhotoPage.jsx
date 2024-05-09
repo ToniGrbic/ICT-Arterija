@@ -1,23 +1,14 @@
 import { useState, useEffect } from "react";
+import fetchPhoto from "../../fetchPhoto";
 
 export default function ChangePhotoPage() {
   const [imgSrc, setImgSrc] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/photos/4")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.text();
-      })
-      .then((data) => {
-        setImgSrc(data);
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
+    fetchPhoto(1)
+      .then((data) => setImgSrc(data))
+      .catch((error) => setError(error.message));
   }, []);
 
   return (
