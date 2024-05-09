@@ -23,7 +23,7 @@ const EventsPreview = () => {
           className={styles["events-preview-more-btn"]}
           onClick={handleMoreClick}
         >
-          ...
+          Prikaži više
         </p>
       </div>
 
