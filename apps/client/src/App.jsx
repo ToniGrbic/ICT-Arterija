@@ -12,6 +12,7 @@ import DonationsHistoryPage from "./pages/DonationsHistoryPage/DonationsHistoryP
 import SettingsPage from "./pages/SettingsPage/SettingsPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage/ChangePasswordPage";
 import ChangeEmailPage from "./pages/ChangeEmailPage/ChangeEmailPage";
+import ChangePhotoPage from "./pages/ChangePhotoPage/ChangePhotoPage";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/change-password" element={<ChangePasswordPage />} />
             <Route path="/change-email" element={<ChangeEmailPage />} />
+            <Route path="/change-photo" element={<ChangePhotoPage />} />
           </Routes>
         </EventsProvider>
       </BrowserRouter>

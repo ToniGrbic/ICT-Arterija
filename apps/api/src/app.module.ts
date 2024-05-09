@@ -14,6 +14,7 @@ import { SponsorsModule } from './sponsors/sponsors.module';
 import { SchedulesModule } from './schedules/schedules.module';
 import { ParticipantsModule } from './participants/participants.module';
 import { UserRewardsModule } from './user_rewards/user_rewards.module';
+import { PhotosModule } from './photos/photos.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { UserRewardsModule } from './user_rewards/user_rewards.module';
     SchedulesModule,
     ParticipantsModule,
     UserRewardsModule,
+    PhotosModule,
   ],
   controllers: [AppController],
   providers: [AppService],

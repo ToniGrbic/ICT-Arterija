@@ -58,7 +58,7 @@ model user_rewards {
 model events {
   id           Int            @id @default(autoincrement())
   location     String         @db.VarChar(255)
-  address       String         @db.VarChar(255)
+  address      String         @db.VarChar(255)
   city_id      Int
   date         DateTime       @db.Date
   organizer    String         @db.VarChar(255)
@@ -138,4 +138,11 @@ enum BloodTypes {
 enum Gender {
   Male
   Female
+}
+
+model Photos {
+  id        Int    @id @default(autoincrement())
+  filename  String
+  mimeType  String
+  imageData Bytes
 }

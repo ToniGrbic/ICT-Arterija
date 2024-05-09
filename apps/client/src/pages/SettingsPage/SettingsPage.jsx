@@ -40,7 +40,12 @@ export default function SettingsPage() {
         </button>
         <h1>Postavke</h1>
       </div>
-      <div className={classes.settingContainer}>
+      <div
+        className={classes.settingContainer}
+        onClick={() => {
+          navigate("/change-photo");
+        }}
+      >
         <img src={ProfileBlack} alt="" />
         <p>Promjenite sliku profila</p>
       </div>
