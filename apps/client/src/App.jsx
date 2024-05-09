@@ -13,6 +13,8 @@ import SettingsPage from "./pages/SettingsPage/SettingsPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage/ChangePasswordPage";
 import ChangeEmailPage from "./pages/ChangeEmailPage/ChangeEmailPage";
 import ChangePhotoPage from "./pages/ChangePhotoPage/ChangePhotoPage";
+import ArteriaBlog from "./pages/Blogs/ArteriaBlog";
+import DonationInfoBlog from "./pages/Blogs/DonationInfoBlog";
 
 function App() {
   return (
@@ -20,10 +22,15 @@ function App() {
       <BrowserRouter>
         <EventsProvider>
           <Routes>
-            <Route element={<MainLayout />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/events" element={<Events />} />
-              <Route path="/events/:id" element={<Event />} />
+            <Route path="/" element={<MainLayout />}>
+              <Route index element={<Home />} />
+              <Route path="events" element={<Events />} />
+              <Route path="events/:id" element={<Event />} />
+              <Route path="blogs/arteria" element={<ArteriaBlog />} />
+              <Route
+                path="blogs/doniranje-info"
+                element={<DonationInfoBlog />}
+              />
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
