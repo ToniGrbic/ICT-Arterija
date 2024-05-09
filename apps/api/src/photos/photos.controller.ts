@@ -2,6 +2,7 @@ import {
   Controller,
   Get,
   Post,
+  Put,
   UploadedFile,
   UseInterceptors,
   Param,
@@ -22,8 +23,7 @@ export class PhotosController {
       mimeType: file.mimetype,
       imageData: file.buffer,
     };
-    await this.photosService.uploadPhoto(uploadPhotoDto);
-    return { message: 'Photo uploaded successfully' };
+    return this.photosService.uploadPhoto(uploadPhotoDto);
   }
 
   @Get(':id')
@@ -42,5 +42,16 @@ export class PhotosController {
   @Get()
   async getPhotos() {
     return await this.photosService.getPhotos();
+  }
+
+  @Put(':id')
+  @UseInterceptors(FileInterceptor('image'))
+  async changePhoto(@UploadedFile() file, @Param('id') id: string) {
+    const uploadPhotoDto: UploadPhotoDto = {
+      filename: file.originalname,
+      mimeType: file.mimetype,
+      imageData: file.buffer,
+    };
+    return this.photosService.changePhoto(+id, uploadPhotoDto);
   }
 }

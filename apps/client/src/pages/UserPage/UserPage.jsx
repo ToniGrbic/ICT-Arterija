@@ -8,20 +8,35 @@ import MenuNavigation from "../../components/MenuNavigation/MenuNavigation";
 import { useState, useEffect } from "react";
 import DonationsHistory from "../../components/DonationsHistory/DonationsHistory";
 import fetchDonations from "../../fetchDonations";
+import fetchPhoto from "../../fetchPhoto";
 
 export default function UserPage() {
   const navigate = useNavigate();
   const cookies = new Cookies(null, { path: "/" });
   const user = cookies.get("user");
   const [data, setData] = useState({ events: [], donations: [] });
+  const [profilePhoto, setProfilePhoto] = useState(null);
   const { events, donations } = data;
 
   useEffect(() => {
     if (user === null || user === undefined) {
       navigate("/login");
+      return;
     }
+
     fetchDonations(setData, user);
-  }, [user, setData, navigate]);
+    const fetchUserPhoto = async () => {
+      if (user.photo_id === 0) {
+        return;
+      }
+      const profilePhoto = await fetchPhoto(user.photos_id);
+      if (profilePhoto) {
+        setProfilePhoto(profilePhoto);
+      }
+    };
+
+    fetchUserPhoto();
+  }, [user, navigate]);
 
   const verifiedDonations = donations
     .filter(
@@ -40,7 +55,11 @@ export default function UserPage() {
           <div className={classes.userPageBackground}>
             <img src={UserPageBackground} alt="" />
           </div>
-          <img src={Profile} alt="" className={classes.profilePicture} />
+          <img
+            src={!profilePhoto ? Profile : profilePhoto}
+            alt=""
+            className={classes.profilePicture}
+          />
           <img
             src={Settings}
             alt=""

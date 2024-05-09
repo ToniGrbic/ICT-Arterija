@@ -1,6 +1,7 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { UploadPhotoDto } from './dto/upload-photo.dto';
+import { Photos } from '@prisma/client';
 
 @Injectable()
 export class PhotosService {
@@ -40,5 +41,30 @@ export class PhotosService {
     } catch (error) {
       throw new InternalServerErrorException(error);
     }
+  }
+
+  async changePhoto(
+    id: number,
+    uploadPhotoDto: UploadPhotoDto,
+  ): Promise<Photos> {
+    const photo = await this.prisma.photos.findUnique({
+      where: {
+        id,
+      },
+    });
+    if (!photo) {
+      throw new Error('Photo not found');
+    }
+
+    photo.filename = uploadPhotoDto.filename;
+    photo.mimeType = uploadPhotoDto.mimeType;
+    photo.imageData = uploadPhotoDto.imageData;
+
+    return this.prisma.photos.update({
+      where: {
+        id,
+      },
+      data: photo,
+    });
   }
 }
