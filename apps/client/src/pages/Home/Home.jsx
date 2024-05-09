@@ -6,6 +6,7 @@ import ScheduleReminder from "../../components/ScheduleReminder/ScheduleReminder
 import EventsPreview from "../../components/Events/EventsPreview/EventsPreview";
 import ArrowRight from "../../icons/ArrowRight/ArrowRight";
 import BlogsPreview from "../../components/Blogs/BlogsPreview/BlogsPreview";
+import LoginAndRegisterBtns from "../../components/Buttons/LoginAndRegisterBtns";
 import Cookies from "universal-cookie";
 import { useOutletContext } from "react-router-dom";
 
@@ -22,8 +23,8 @@ const Home = () => {
     <>
       <AutoPlay />
       <div className={styles["landing-main-wrapper"]}>
-        <StatsBar />
-        <ScheduleReminder />
+        {user ? <StatsBar /> : <LoginAndRegisterBtns />}
+        {user && <ScheduleReminder />}
         <EventsPreview />
         <div className={styles["rewards-teaser"]}>
           <h1>Puno bodova, puno nagrada</h1>
