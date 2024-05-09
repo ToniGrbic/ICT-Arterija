@@ -1,7 +1,6 @@
 import { useState } from "react"; // Import useState hook
 import { useNavigate } from "react-router";
 import classes from "./index.module.css";
-import ProfileBlack from "../../assets/ProfileBlack.svg";
 import EmailBlack from "../../assets/EmailBlack.svg";
 import PasswordBlack from "../../assets/PasswordBlack.svg";
 import LogOffBlack from "../../assets/LogOffBlack.svg";
@@ -39,15 +38,6 @@ export default function SettingsPage() {
           {"<"}
         </button>
         <h1>Postavke</h1>
-      </div>
-      <div
-        className={classes.settingContainer}
-        onClick={() => {
-          navigate("/change-photo");
-        }}
-      >
-        <img src={ProfileBlack} alt="" />
-        <p>Promjenite sliku profila</p>
       </div>
       <div
         className={classes.settingContainer}

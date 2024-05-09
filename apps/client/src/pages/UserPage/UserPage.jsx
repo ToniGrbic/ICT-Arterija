@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import DonationsHistory from "../../components/DonationsHistory/DonationsHistory";
 import fetchDonations from "../../fetchDonations";
 import fetchPhoto from "../../fetchPhoto";
+import ChangePhotoPopup from "../../components/ChangePhotoPopup/ChangePhotoPopup";
 
 export default function UserPage() {
   const navigate = useNavigate();
@@ -99,6 +100,7 @@ export default function UserPage() {
           <DonationsHistory donation={verifiedDonations[0]} />
         </div>
         <MenuNavigation />
+        <ChangePhotoPopup />
       </div>
     )
   );

@@ -1,19 +1,19 @@
 import { useState, useRef } from "react";
 import classes from "./index.module.css";
+import Galery from "../../assets/Galery.svg";
+import ConfirmPhotoPopup from "../ConfirmPhotoPopup/ConfirmPhotoPopup";
 import Cookies from "universal-cookie";
-import { useNavigate } from "react-router";
 
-export default function ChangePhotoPage() {
+export default function ChangePhotoPopup() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewSrc, setPreviewSrc] = useState(null);
   const fileInputRef = useRef(null);
+  const [message, setMessage] = useState("");
   const cookies = new Cookies();
   const user = cookies.get("user");
-  const navigate = useNavigate();
-  const [message, setMessage] = useState("");
 
   const handleFileChange = (event) => {
-    setMessage(""); // Clear the message
+    setMessage("");
     const file = event.target.files[0];
     setSelectedFile(file);
 
@@ -24,7 +24,12 @@ export default function ChangePhotoPage() {
     }
   };
 
-  const handleUpload = async () => {
+  const handleCancel = () => {
+    setPreviewSrc(null);
+    setSelectedFile(null);
+  };
+
+  const handleConfirm = async () => {
     if (!selectedFile) {
       return;
     }
@@ -63,36 +68,31 @@ export default function ChangePhotoPage() {
 
   return (
     <div className={classes.changePhotoPage}>
-      <h1 className={classes.changePhotoHeadline}>Promjena slike profila</h1>
-      <button
-        className={classes.backButton}
-        onClick={() => navigate("/settings")}
-      >
-        {"<"}
-      </button>
-      <label htmlFor="fileInput" className={classes.chooseFileLabel}>
-        Odaberite sliku
-      </label>
-      <input
-        id="fileInput"
-        type="file"
-        onChange={handleFileChange}
-        ref={fileInputRef}
-        className={classes.chooseFileInput}
-      />
-      {!previewSrc ? (
-        <>Uneseni file nije slika</>
-      ) : (
-        <img
-          src={previewSrc}
-          alt="Preview"
-          className={classes.uploadFilePreview}
+      <button className={classes.backButton}>{"X"}</button>
+      <h1 className={classes.changePhotoHeadline}>
+        Promjena fotografije profila
+      </h1>
+      <div className={classes.changePhotoOptionContainer}>
+        <img src={Galery} alt="" />
+        <label htmlFor="fileInput" className={classes.chooseFileLabel}>
+          Galerija fotografija
+        </label>
+        <input
+          id="fileInput"
+          type="file"
+          onChange={handleFileChange}
+          ref={fileInputRef}
+          className={classes.chooseFileInput}
+        />
+      </div>
+      {previewSrc && (
+        <ConfirmPhotoPopup
+          photo={previewSrc}
+          onConfirm={handleConfirm}
+          onCancel={handleCancel}
+          message={message}
         />
       )}
-      <p>{message}</p>
-      <button className={classes.changePhotoButton} onClick={handleUpload}>
-        Promijeni sliku
-      </button>
     </div>
   );
 }
