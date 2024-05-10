@@ -38,18 +38,18 @@ export class UserRewardsController {
     return this.userRewardsService.findAll();
   }
 
+  @Get('user')
+  @UseGuards(AdminAuthGuard)
+  @ApiOkResponse({ type: userRewardsEntity })
+  findByUser(@Req() { user }) {
+    return this.userRewardsService.findByUser(user.id);
+  }
+
   @Get(':id')
   @UseGuards(AdminAuthGuard)
   @ApiOkResponse({ type: userRewardsEntity })
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.userRewardsService.findOne(id);
-  }
-
-  @Get('user')
-  @UseGuards(UserAuthGuard)
-  @ApiOkResponse({ type: userRewardsEntity })
-  findByUser(@Req() { user }) {
-    return this.userRewardsService.findByUser(user.id);
   }
 
   @Patch(':id')
