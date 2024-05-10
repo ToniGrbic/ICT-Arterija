@@ -26,7 +26,7 @@ export class UserRewardsController {
 
   @Post()
   @ApiOkResponse({ type: userRewardsEntity })
-  @UseGuards(AdminAuthGuard)
+  @UseGuards(UserAuthGuard)
   create(@Body() createUserRewardDto: CreateUserRewardDto) {
     return this.userRewardsService.create(createUserRewardDto);
   }
@@ -39,7 +39,7 @@ export class UserRewardsController {
   }
 
   @Get('user')
-  @UseGuards(AdminAuthGuard)
+  @UseGuards(UserAuthGuard)
   @ApiOkResponse({ type: userRewardsEntity })
   findByUser(@Req() { user }) {
     return this.userRewardsService.findByUser(user.id);
