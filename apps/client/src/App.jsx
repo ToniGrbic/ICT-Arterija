@@ -14,6 +14,7 @@ import ChangePasswordPage from "./pages/ChangePasswordPage/ChangePasswordPage";
 import ChangeEmailPage from "./pages/ChangeEmailPage/ChangeEmailPage";
 import ArteriaBlog from "./pages/Blogs/ArteriaBlog";
 import DonationInfoBlog from "./pages/Blogs/DonationInfoBlog";
+import Rewards from "./pages/Rewards/Rewards";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
               <Route index element={<Home />} />
               <Route path="events" element={<Events />} />
               <Route path="events/:id" element={<Event />} />
+              <Route path="rewards" element={<Rewards />} />
               <Route path="blogs/arteria" element={<ArteriaBlog />} />
               <Route
                 path="blogs/doniranje-info"

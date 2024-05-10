@@ -12,15 +12,18 @@ export class UserRewardsService {
   }
 
   findAll() {
-    return this.prisma.user_rewards.findMany();
+    return this.prisma.user_rewards.findMany({ include: { rewards: true } });
   }
 
   findOne(id: number) {
     return this.prisma.user_rewards.findUnique({ where: { id } });
   }
 
-  findByUser(user_id: number) {
-    return this.prisma.user_rewards.findMany({ where: { user_id } });
+  findByUser(user_id) {
+    return this.prisma.user_rewards.findMany({
+      where: { user_id },
+      include: { rewards: true },
+    });
   }
 
   update(id: number, updateUserRewardDto: UpdateUserRewardDto) {

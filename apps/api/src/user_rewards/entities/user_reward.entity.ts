@@ -11,5 +11,5 @@ export class userRewardsEntity {
   reward_id: number;
 
   @ApiProperty()
-  created_at: Date;
+  created_at: string;
 }

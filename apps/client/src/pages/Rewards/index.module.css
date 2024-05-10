@@ -1,0 +1,23 @@
+.rewards-container {
+  width: 327px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  & > h3 {
+    font-size: 16px;
+  }
+}
+
+.rewards-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.rewards-user-points {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28px;
+  color: var(--red-color);
+}

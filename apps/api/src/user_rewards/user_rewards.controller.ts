@@ -26,7 +26,7 @@ export class UserRewardsController {
 
   @Post()
   @ApiOkResponse({ type: userRewardsEntity })
-  @UseGuards(AdminAuthGuard)
+  @UseGuards(UserAuthGuard)
   create(@Body() createUserRewardDto: CreateUserRewardDto) {
     return this.userRewardsService.create(createUserRewardDto);
   }
@@ -38,18 +38,18 @@ export class UserRewardsController {
     return this.userRewardsService.findAll();
   }
 
-  @Get(':id')
-  @UseGuards(AdminAuthGuard)
-  @ApiOkResponse({ type: userRewardsEntity })
-  findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.userRewardsService.findOne(id);
-  }
-
   @Get('user')
   @UseGuards(UserAuthGuard)
   @ApiOkResponse({ type: userRewardsEntity })
   findByUser(@Req() { user }) {
     return this.userRewardsService.findByUser(user.id);
+  }
+
+  @Get(':id')
+  @UseGuards(AdminAuthGuard)
+  @ApiOkResponse({ type: userRewardsEntity })
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.userRewardsService.findOne(id);
   }
 
   @Patch(':id')

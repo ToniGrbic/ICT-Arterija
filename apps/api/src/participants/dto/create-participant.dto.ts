@@ -10,15 +10,15 @@ export class CreateParticipantDto {
   @IsNumber()
   event_id: number;
 
-  @ApiProperty()
+  @ApiProperty({ default: true })
   @IsBoolean()
   is_working: boolean;
 
-  @ApiProperty()
+  @ApiProperty({ default: true })
   @IsBoolean()
   is_valid: boolean;
 
-  @ApiProperty()
+  @ApiProperty({ default: false })
   @IsBoolean()
   is_finished: boolean;
 }

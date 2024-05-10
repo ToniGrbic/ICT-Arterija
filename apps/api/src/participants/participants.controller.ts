@@ -8,6 +8,7 @@ import {
   Delete,
   ParseIntPipe,
   UseGuards,
+  Req,
 } from '@nestjs/common';
 import { ParticipantsService } from './participants.service';
 import { CreateParticipantDto } from './dto/create-participant.dto';
@@ -15,6 +16,7 @@ import { UpdateParticipantDto } from './dto/update-participant.dto';
 import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { participantEntity } from './entities/participant.entity';
 import { AdminAuthGuard } from 'src/users/guards/admin-auth.guard';
+import { UserAuthGuard } from 'src/users/guards/user-auth.guard';
 
 @Controller('participants')
 @ApiTags('Participants')
@@ -23,7 +25,7 @@ export class ParticipantsController {
 
   @Post()
   @ApiBearerAuth()
-  @UseGuards(AdminAuthGuard)
+  @UseGuards(UserAuthGuard)
   @ApiOkResponse({ type: participantEntity })
   create(@Body() createParticipantDto: CreateParticipantDto) {
     return this.participantsService.create(createParticipantDto);
@@ -35,6 +37,13 @@ export class ParticipantsController {
   @ApiOkResponse({ type: participantEntity })
   findAll() {
     return this.participantsService.findAll();
+  }
+
+  @Get('user')
+  @UseGuards(UserAuthGuard)
+  @ApiOkResponse({ type: participantEntity })
+  findByUser(@Req() { user }) {
+    return this.participantsService.findByUser(user.id);
   }
 
   @Get(':id')
@@ -51,11 +60,6 @@ export class ParticipantsController {
     return this.participantsService.findByEvent(id);
   }
 
-  @Get('user/:user_id')
-  @ApiOkResponse({ type: participantEntity })
-  findByUser(@Param('user_id', ParseIntPipe) user_id: number) {
-    return this.participantsService.findByUser(user_id);
-  }
   @Patch(':id')
   @ApiOkResponse({ type: participantEntity })
   update(

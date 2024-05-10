@@ -21,7 +21,9 @@ const MenuNavigation = () => {
             </Link>
           </li>
           <li>
-            <Rewards />
+            <Link to="/rewards">
+              <Rewards />
+            </Link>
           </li>
           <li>
             <Profile />
