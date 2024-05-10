@@ -34,6 +34,7 @@ model rewards {
   sponsor_id      Int
   required_points Int
   description     String
+  image           String?        @db.VarChar(255)
   sponsors        sponsors       @relation(fields: [sponsor_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "rewards_sponsor_id_foreign")
   user_rewards    user_rewards[]
 }
