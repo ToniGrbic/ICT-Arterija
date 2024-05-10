@@ -18,6 +18,7 @@ export default function UserPage() {
   const [data, setData] = useState({ events: [], donations: [] });
   const [profilePhoto, setProfilePhoto] = useState(null);
   const { events, donations } = data;
+  console.log(user);
 
   useEffect(() => {
     if (user === null || user === undefined) {
@@ -27,17 +28,18 @@ export default function UserPage() {
 
     fetchDonations(setData, user);
     const fetchUserPhoto = async () => {
-      if (user.photo_id === 0) {
+      if (user.photo_id === 0 || user.photo_id === null) {
         return;
-      }
-      const profilePhoto = await fetchPhoto(user.photos_id);
-      if (profilePhoto) {
-        setProfilePhoto(profilePhoto);
+      } else {
+        const profilePhoto = await fetchPhoto(user.photos_id);
+        if (profilePhoto) {
+          setProfilePhoto(profilePhoto);
+        }
       }
     };
 
     fetchUserPhoto();
-  }, [user, navigate]);
+  }, []);
 
   const verifiedDonations = donations
     .filter(

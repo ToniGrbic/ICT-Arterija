@@ -3,14 +3,17 @@ import classes from "./index.module.css";
 import Galery from "../../assets/Galery.svg";
 import ConfirmPhotoPopup from "../ConfirmPhotoPopup/ConfirmPhotoPopup";
 import Cookies from "universal-cookie";
+import TrashCan from "../../assets/TrashCan.svg";
+import DeletePhotoPopup from "../DeletePhotoPopup/DeletePhotoPopup";
 
 export default function ChangePhotoPopup() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewSrc, setPreviewSrc] = useState(null);
   const fileInputRef = useRef(null);
-  const [message, setMessage] = useState("");
   const cookies = new Cookies();
   const user = cookies.get("user");
+  const [message, setMessage] = useState("");
+  const [deletePopup, setDeletePopup] = useState(false);
 
   const handleFileChange = (event) => {
     setMessage("");
@@ -21,48 +24,6 @@ export default function ChangePhotoPopup() {
       setPreviewSrc(URL.createObjectURL(file));
     } else {
       setPreviewSrc(null);
-    }
-  };
-
-  const handleCancel = () => {
-    setPreviewSrc(null);
-    setSelectedFile(null);
-  };
-
-  const handleConfirm = async () => {
-    if (!selectedFile) {
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append("filename", selectedFile.name);
-    formData.append("mimeType", selectedFile.type);
-    formData.append("image", selectedFile);
-
-    try {
-      const url =
-        user.photos_id === 0
-          ? "/api/photos/upload"
-          : `/api/photos/${user.photos_id}`;
-      const method = user.photos_id === 0 ? "POST" : "PUT";
-
-      const response = await fetch(url, {
-        method,
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error("Dogodila se greška pri promjeni slike.");
-      }
-
-      const responseData = await response.json();
-
-      setMessage("Profilna slika uspješno promjenjena."); // Set the message
-
-      return responseData;
-    } catch (error) {
-      setMessage("Error uploading file: " + error.message); // Set the message
-      throw error;
     }
   };
 
@@ -85,12 +46,27 @@ export default function ChangePhotoPopup() {
           className={classes.chooseFileInput}
         />
       </div>
+      <div className={classes.changePhotoOptionContainer}>
+        <img src={TrashCan} alt="" />
+        <p
+          className={classes.deleteImageLabel}
+          onClick={() => {
+            setDeletePopup(true);
+          }}
+        >
+          Obriši sliku profila
+        </p>
+      </div>
+      {deletePopup && <DeletePhotoPopup setIsVisible={setDeletePopup} />}
       {previewSrc && (
         <ConfirmPhotoPopup
-          photo={previewSrc}
-          onConfirm={handleConfirm}
-          onCancel={handleCancel}
+          user={user}
+          setMessage={setMessage}
+          selectedFile={selectedFile}
+          setPreviewSrc={setPreviewSrc}
+          setSelectedFile={setSelectedFile}
           message={message}
+          previewSrc={previewSrc}
         />
       )}
     </div>

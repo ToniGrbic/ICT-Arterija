@@ -1,8 +1,8 @@
-.changePhotoPage {
+.deletePhotoPopup {
   padding: 1.5rem;
   position: absolute;
   bottom: 0;
-  height: 30%;
+  height: 100%;
   width: 88%;
   display: flex;
   flex-direction: column;
@@ -21,7 +21,7 @@
   margin: 1.5rem;
 }
 
-.changePhotoHeadline {
+.deleteImageHeadline {
   color: #000;
 
   /* Text/Naslov */
@@ -31,38 +31,38 @@
   font-weight: 700;
   line-height: 1.75rem; /* 116.667% */
 }
-.chooseFileInput {
-  display: none;
-}
 
-.changePhotoOptionContainer {
+.buttonContainer {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 1.5rem;
-  gap: 1.75rem;
-  align-self: flex-start;
-  margin-left: 2rem;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 3.5rem;
 }
 
-.chooseFileLabel {
-  color: #000;
-
-  /* Text/Copy */
+.noButton {
+  padding: 0.75rem 0;
+  width: 48%;
+  border-radius: 0.5rem;
+  border: 1px solid var(--Zelena, #42b981);
+  background: var(--White, #fffcf8);
   font-family: "Rethink Sans";
-  font-size: 0.875rem;
+  font-size: 1.5rem;
   font-style: normal;
-  font-weight: 400;
-  line-height: 1.3125rem; /* 150% */
+  font-weight: 700;
+  line-height: 1.75rem; /* 116.667% */
+  color: #42b981;
 }
 
-.deleteImageLabel {
-  color: #e03943;
-
-  /* Text/Copy */
+.yesButton {
+  width: 48%;
+  padding: 0.75rem 0;
+  border-radius: 0.5rem;
+  background: var(--Zelena, #42b981);
+  border: none;
   font-family: "Rethink Sans";
-  font-size: 0.875rem;
+  font-size: 1.5rem;
   font-style: normal;
-  font-weight: 400;
-  line-height: 1.3125rem; /* 150% */
+  font-weight: 700;
+  line-height: 1.75rem; /* 116.667% */
+  color: #fffcf8;
 }
