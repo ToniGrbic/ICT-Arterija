@@ -1,0 +1,28 @@
+.filter_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  background-color: white;
+  color: white;
+  font-weight: 600;
+  border: 1px solid var(--yellow-color);
+  color: var(--black-color);
+}
+
+.filter_btn_active {
+  background-color: var(--yellow-color);
+}
+
+.filter_parent {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
+  width: auto;
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
