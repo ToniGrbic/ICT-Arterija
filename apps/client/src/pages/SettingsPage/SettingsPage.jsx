@@ -6,7 +6,7 @@ import EmailBlack from "../../assets/EmailBlack.svg";
 import PasswordBlack from "../../assets/PasswordBlack.svg";
 import LogOffBlack from "../../assets/LogOffBlack.svg";
 import MenuNavigation from "../../components/MenuNavigation/MenuNavigation";
-import LogOffPopup from "../../components/Popups/LogOffPopup/LogOffPopup";
+import ConfirmPopup from "../../components/Popups/ConfirmPopup/ConfirmPopup";
 import Cookies from "universal-cookie";
 
 export default function SettingsPage() {
@@ -70,10 +70,11 @@ export default function SettingsPage() {
         <p>Odjava</p>
       </div>
       <MenuNavigation />
-      {showLogOffPopup && ( // Render LogOffPopup if showLogOffPopup is true
-        <LogOffPopup
+      {showLogOffPopup && ( // Render ConfirmPopup if showLogOffPopup is true
+        <ConfirmPopup
           onConfirm={handleConfirmLogOff}
           onCancel={handleCancelLogOff}
+          title="Jeste li sigurni da se želite odjaviti?"
         />
       )}
     </div>
