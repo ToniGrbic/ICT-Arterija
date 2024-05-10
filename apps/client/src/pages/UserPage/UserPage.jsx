@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import DonationsHistory from "../../components/DonationsHistory/DonationsHistory";
 import fetchDonations from "../../fetchDonations";
 import fetchPhoto from "../../fetchPhoto";
+import ChangePhotoPopup from "../../components/ChangePhotoPopup/ChangePhotoPopup";
 
 export default function UserPage() {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ export default function UserPage() {
   const [data, setData] = useState({ events: [], donations: [] });
   const [profilePhoto, setProfilePhoto] = useState(null);
   const { events, donations } = data;
+  const [changePhotoPopup, setChangePhotoPopup] = useState(false);
 
   useEffect(() => {
     if (user === null || user === undefined) {
@@ -26,17 +28,18 @@ export default function UserPage() {
 
     fetchDonations(setData, user);
     const fetchUserPhoto = async () => {
-      if (user.photo_id === 0) {
+      if (user.photo_id === 0 || user.photo_id === null) {
         return;
-      }
-      const profilePhoto = await fetchPhoto(user.photos_id);
-      if (profilePhoto) {
-        setProfilePhoto(profilePhoto);
+      } else {
+        const profilePhoto = await fetchPhoto(user.photos_id);
+        if (profilePhoto) {
+          setProfilePhoto(profilePhoto);
+        }
       }
     };
 
     fetchUserPhoto();
-  }, [user, navigate]);
+  }, []);
 
   const verifiedDonations = donations
     .filter(
@@ -59,6 +62,9 @@ export default function UserPage() {
             src={!profilePhoto ? Profile : profilePhoto}
             alt=""
             className={classes.profilePicture}
+            onClick={() => {
+              setChangePhotoPopup(true);
+            }}
           />
           <img
             src={Settings}
@@ -99,6 +105,9 @@ export default function UserPage() {
           <DonationsHistory donation={verifiedDonations[0]} />
         </div>
         <MenuNavigation />
+        {changePhotoPopup && (
+          <ChangePhotoPopup setIsVisible={setChangePhotoPopup} />
+        )}
       </div>
     )
   );

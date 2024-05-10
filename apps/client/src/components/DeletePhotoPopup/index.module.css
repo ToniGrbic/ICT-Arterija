@@ -1,0 +1,68 @@
+.deletePhotoPopup {
+  padding: 1.5rem;
+  position: absolute;
+  bottom: 0;
+  height: 100%;
+  width: 88%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 1rem 1rem 0rem 0rem;
+  background: #fffcf8;
+  box-shadow: 0px 8px 20px 0px rgba(18, 27, 40, 0.12);
+}
+
+.backButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  align-self: flex-end;
+  margin: 1.5rem;
+}
+
+.deleteImageHeadline {
+  color: #000;
+
+  /* Text/Naslov */
+  font-family: "Rethink Sans";
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.75rem; /* 116.667% */
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 3.5rem;
+}
+
+.noButton {
+  padding: 0.75rem 0;
+  width: 48%;
+  border-radius: 0.5rem;
+  border: 1px solid var(--Zelena, #42b981);
+  background: var(--White, #fffcf8);
+  font-family: "Rethink Sans";
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.75rem; /* 116.667% */
+  color: #42b981;
+}
+
+.yesButton {
+  width: 48%;
+  padding: 0.75rem 0;
+  border-radius: 0.5rem;
+  background: var(--Zelena, #42b981);
+  border: none;
+  font-family: "Rethink Sans";
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.75rem; /* 116.667% */
+  color: #fffcf8;
+}

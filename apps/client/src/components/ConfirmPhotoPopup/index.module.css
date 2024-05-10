@@ -1,0 +1,72 @@
+.confirmPhotoPopup {
+  padding: 1.5rem;
+  position: absolute;
+  bottom: 0;
+  height: 100%;
+  width: 88%;
+  border-radius: 1rem 1rem 0rem 0rem;
+  background: #fffcf8;
+  box-shadow: 0px 8px 20px 0px rgba(18, 27, 40, 0.12);
+}
+
+.popupContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.confirmPhotoPopup h1 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.previewImage {
+  background-color: gray;
+  width: 8rem;
+  height: 8rem;
+  flex-shrink: 0;
+  border-radius: 5.8125rem;
+  border: 3px solid #f3bc4d;
+}
+
+.popupButtons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.popupButtons button {
+  width: 48%;
+  height: 3rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.yesButton {
+  border-radius: 0.5rem;
+  background: var(--Zelena, #42b981);
+  border: none;
+  font-family: "Rethink Sans";
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.75rem; /* 116.667% */
+  color: #fffcf8;
+}
+
+.noButton {
+  border-radius: 0.5rem;
+  border: 1px solid var(--Zelena, #42b981);
+  background: var(--White, #fffcf8);
+  font-family: "Rethink Sans";
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.75rem; /* 116.667% */
+  color: #42b981;
+}

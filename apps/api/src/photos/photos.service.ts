@@ -67,4 +67,12 @@ export class PhotosService {
       data: photo,
     });
   }
+
+  async deletePhoto(id: number) {
+    return this.prisma.photos.delete({
+      where: {
+        id,
+      },
+    });
+  }
 }
