@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 import DonationsHistory from "../../components/DonationsHistory/DonationsHistory";
 import fetchDonations from "../../fetchDonations";
 import fetchPhoto from "../../fetchPhoto";
-import ChangePhotoPopup from "../../components/ChangePhotoPopup/ChangePhotoPopup";
+import ChangePhotoPopup from "../../components/Popups/ChangePhotoPopup/ChangePhotoPopup";
 
 export default function UserPage() {
   const navigate = useNavigate();

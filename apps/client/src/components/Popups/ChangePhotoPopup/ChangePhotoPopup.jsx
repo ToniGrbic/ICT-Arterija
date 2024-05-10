@@ -1,10 +1,10 @@
 import { useState, useRef } from "react";
 import classes from "./index.module.css";
-import Galery from "../../assets/Galery.svg";
+import Galery from "../../../assets/Galery.svg";
 import ConfirmPhotoPopup from "../ConfirmPhotoPopup/ConfirmPhotoPopup";
 import Cookies from "universal-cookie";
-import TrashCan from "../../assets/TrashCan.svg";
-import DeletePhotoPopup from "../DeletePhotoPopup/DeletePhotoPopup";
+import TrashCan from "../../../assets/TrashCan.svg";
+import DeletePhotoPopup from "../../DeletePhotoPopup/DeletePhotoPopup";
 
 // eslint-disable-next-line react/prop-types
 export default function ChangePhotoPopup({ setIsVisible }) {
