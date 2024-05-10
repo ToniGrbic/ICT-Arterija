@@ -5,7 +5,6 @@ import Cookies from "universal-cookie";
 export default function DeletePhotoPopup({ setIsVisible }) {
   const cookies = new Cookies();
   const user = cookies.get("user");
-  console.log(user.photos_id);
 
   const handleDeletePhoto = async () => {
     await fetch(`/api/photos/${user.photos_id}`, {
