@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import styles from "./index.module.css";
 import RewardsPopup from "../Popups/RewardsPopup/RewardsPopup";
 
-const RewardsCard = ({ reward, userPoints }) => {
+const RewardsCard = ({ reward, userPoints = 0 }) => {
   const [showRewardPopup, setShowRewardPopup] = useState(false);
 
   const calculateBarWidthPercentage = () => {
-    if (userPoints >= reward.points) return 100;
-    return (userPoints / reward.points) * 100;
+    if (userPoints >= reward.required_points) return 100;
+    return (userPoints / reward.required_points) * 100;
   };
 
   const handleClick = () => {
@@ -15,7 +15,7 @@ const RewardsCard = ({ reward, userPoints }) => {
   };
 
   return (
-    <div className={styles["reward-card-container"]} onClick={handleClick}>
+    <>
       {showRewardPopup && (
         <RewardsPopup
           reward={reward}
@@ -23,26 +23,28 @@ const RewardsCard = ({ reward, userPoints }) => {
           showPopup={setShowRewardPopup}
         />
       )}
-      <img
-        className={styles["reward-card-image"]}
-        src={reward.image || "https://via.placeholder.com/116x105"}
-      />
-      <div className={styles["reward-card-info"]}>
-        <h3>{reward.title}</h3>
-        <div className={styles["reward-progress-bar"]}>
-          <div
-            style={{ width: `${calculateBarWidthPercentage()}%` }}
-            className={styles["reward-progress-bar-fill"]}
-          ></div>
+      <div className={styles["reward-card-container"]} onClick={handleClick}>
+        <img
+          className={styles["reward-card-image"]}
+          src={reward.image || "https://via.placeholder.com/116x105"}
+        />
+        <div className={styles["reward-card-info"]}>
+          <h3>{reward.name}</h3>
+          <div className={styles["reward-progress-bar"]}>
+            <div
+              style={{ width: `${calculateBarWidthPercentage()}%` }}
+              className={styles["reward-progress-bar-fill"]}
+            ></div>
+          </div>
+          <p>
+            <span className={styles["reward-required-points"]}>
+              {reward.required_points}
+            </span>{" "}
+            bodova
+          </p>
         </div>
-        <p>
-          <span className={styles["reward-required-points"]}>
-            {reward.points}
-          </span>{" "}
-          bodova
-        </p>
       </div>
-    </div>
+    </>
   );
 };
 

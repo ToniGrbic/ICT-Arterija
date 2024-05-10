@@ -4,7 +4,8 @@
   inset: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
+  z-index: 5;
 }
 
 .rewards-popup-container {
@@ -13,13 +14,40 @@
   flex-direction: column;
   gap: 12px;
   background-color: var(--white-color);
-  border-radius: 16px;
+  border-top-right-radius: 16px;
+  border-top-left-radius: 16px;
   padding: 16px;
   position: relative;
 }
 
 .rewards-popup-claim {
   display: flex;
+  gap: 20px;
+
+  & > p {
+    font-size: 16px;
+    color: var(--red-color);
+    font-weight: 700;
+  }
+}
+
+.rewards-popup-claim-btn {
+  border-radius: 8px;
+  padding: 8px 12px;
+  border: none;
+  font-size: 16px;
+}
+
+.rewards-popup-claim-btn:disabled {
+  background: rgba(18, 27, 40, 0.2);
+  color: var(--black-color);
+  box-shadow: 0px 8px 20px 0px rgba(18, 27, 40, 0.12);
+}
+
+.btn-active {
+  box-shadow: 0px 1px 32px 0px rgba(224, 57, 67, 0.4);
+  background-color: var(--red-color);
+  color: var(--white-color);
 }
 
 .rewards-popup-close {

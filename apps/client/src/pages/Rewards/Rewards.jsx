@@ -4,6 +4,7 @@ import RewardsCard from "../../components/RewardsCard/RewardsCard";
 import { useOutletContext } from "react-router-dom";
 import Filter from "../../components/Filter/Filter";
 import Cookies from "universal-cookie";
+
 const filterOptions = {
   Sve: "Sve",
   Osvojene: "Osvojene",
@@ -13,32 +14,53 @@ const filterOptions = {
 const Rewards = () => {
   const [_, setPageName] = useOutletContext();
   const [filteredRewards, setFilteredRewards] = useState([]);
-  const cookies = new Cookies();
-  const { points: userPoints } = cookies.get("user");
+  const [activeFilter, setActiveFilter] = useState("Sve");
 
-  const rewards = [
-    {
-      id: 1,
-      title: "Putovanje u Istru",
-      points: 1000,
-      image: "https://i.ibb.co/hm6r8cq/reward-1.jpg",
-      userId: 1,
-    },
-    {
-      id: 2,
-      title: "Rucak u baste",
-      points: 200,
-      image: "https://via.placeholder.com/116x105",
-      userId: 1,
-    },
-    {
-      id: 3,
-      title: "Amphora",
-      points: 500,
-      image: "https://via.placeholder.com/116x105",
-      userId: 2,
-    },
-  ];
+  const cookies = new Cookies();
+  const user = cookies.get("user");
+
+  useEffect(() => {
+    (async () => {
+      const resRewards = await fetch("api/rewards");
+      const rewards = await resRewards.json();
+
+      if (!user) {
+        setFilteredRewards(rewards);
+        return;
+      }
+
+      const resUserRewards = await fetch(`api/user-rewards/user`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+
+      const userRewards = await resUserRewards.json();
+
+      if (activeFilter === "Osvojene") {
+        setFilteredRewards(
+          rewards.filter((reward) =>
+            userRewards.some(
+              (userReward) => userReward.rewards.id === reward.id
+            )
+          )
+        );
+      } else if (activeFilter === "Dostupne") {
+        setFilteredRewards(
+          rewards.filter(
+            (reward) =>
+              !userRewards.some(
+                (userReward) => userReward.rewards.id === reward.id
+              )
+          )
+        );
+      } else {
+        setFilteredRewards(rewards);
+      }
+    })();
+  }, [activeFilter]);
 
   useEffect(() => {
     setPageName("Nagrade");
@@ -47,20 +69,28 @@ const Rewards = () => {
   return (
     <div className={styles["rewards-wrapper"]}>
       <div className={styles["rewards-container"]}>
-        <Filter
-          tags={rewards}
-          setFilteredTags={setFilteredRewards}
-          filterOptions={filterOptions}
-        />
-        <h3>
-          Vaši bodovi:{" "}
-          <span className={styles["rewards-user-points"]}>{userPoints}</span>
-        </h3>
+        {user ? (
+          <>
+            <Filter
+              filterOptions={filterOptions}
+              activeFilter={activeFilter}
+              setActiveFilter={setActiveFilter}
+            />
+            <h3>
+              Vaši bodovi:{" "}
+              <span className={styles["rewards-user-points"]}>
+                {user.points}
+              </span>
+            </h3>
+          </>
+        ) : (
+          <p>Niste prijavljeni!</p>
+        )}
         {filteredRewards.map((reward) => (
           <RewardsCard
             key={reward.id}
             reward={reward}
-            userPoints={userPoints}
+            userPoints={user?.points}
           />
         ))}
       </div>

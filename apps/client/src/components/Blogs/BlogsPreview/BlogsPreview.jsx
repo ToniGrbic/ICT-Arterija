@@ -16,7 +16,7 @@ const BlogsPreview = () => {
 
   return (
     <div className={styles["blogs-preview-wrapper"]}>
-      <h2>Blogovi</h2>
+      <h2>Za znatiželjne</h2>
       <div className={styles["blogs-preview-container"]}>
         <div
           className={styles["blog-preview-card"]}
