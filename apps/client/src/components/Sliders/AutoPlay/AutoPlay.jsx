@@ -28,11 +28,18 @@ function AutoPlay() {
     autoplaySpeed: 3000,
     cssEase: "linear",
   };
+
+  const photos = [
+    "https://i.ibb.co/pj8gzJb/output-onlinepngtools-2.png",
+    "https://i.ibb.co/w0Z1qGm/output-onlinepngtools.png",
+    "https://i.ibb.co/K6KVFX6/IMG-2.png",
+  ];
+
   return (
     <div className={styles["slider-container"]}>
       <Slider {...settings}>
-        {Array.from({ length: 5 }).map((_, index) => (
-          <SliderImage key={index} />
+        {photos.map((url, index) => (
+          <SliderImage key={index} imgUrl={url} />
         ))}
       </Slider>
     </div>
