@@ -6,7 +6,7 @@ import EmailBlack from "../../assets/EmailBlack.svg";
 import PasswordBlack from "../../assets/PasswordBlack.svg";
 import LogOffBlack from "../../assets/LogOffBlack.svg";
 import MenuNavigation from "../../components/MenuNavigation/MenuNavigation";
-import LogOffPopup from "../../components/LogOffPopup/LogOffPopup";
+import LogOffPopup from "../../components/Popups/LogOffPopup/LogOffPopup";
 import Cookies from "universal-cookie";
 
 export default function SettingsPage() {
