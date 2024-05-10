@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import styles from "./index.module.css";
 import RewardsPopup from "../Popups/RewardsPopup/RewardsPopup";
 
-const RewardsCard = ({ reward, userPoints = 0 }) => {
+const RewardsCard = ({
+  reward,
+  userPoints = 0,
+  setUserPoints,
+  setFilteredRewards,
+}) => {
   const [showRewardPopup, setShowRewardPopup] = useState(false);
 
   const calculateBarWidthPercentage = () => {
@@ -20,7 +25,9 @@ const RewardsCard = ({ reward, userPoints = 0 }) => {
         <RewardsPopup
           reward={reward}
           userPoints={userPoints}
+          setUserPoints={setUserPoints}
           showPopup={setShowRewardPopup}
+          setFilteredRewards={setFilteredRewards}
         />
       )}
       <div className={styles["reward-card-container"]} onClick={handleClick}>

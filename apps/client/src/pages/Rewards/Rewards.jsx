@@ -14,6 +14,7 @@ const filterOptions = {
 const Rewards = () => {
   const [_, setPageName] = useOutletContext();
   const [filteredRewards, setFilteredRewards] = useState([]);
+  const [userPoints, setUserPoints] = useState([]);
   const [activeFilter, setActiveFilter] = useState("Sve");
 
   const cookies = new Cookies();
@@ -64,6 +65,7 @@ const Rewards = () => {
 
   useEffect(() => {
     setPageName("Nagrade");
+    if (user) setUserPoints(user?.points);
   }, []);
 
   return (
@@ -79,7 +81,7 @@ const Rewards = () => {
             <h3>
               Vaši bodovi:{" "}
               <span className={styles["rewards-user-points"]}>
-                {user.points}
+                {userPoints}
               </span>
             </h3>
           </>
@@ -90,7 +92,9 @@ const Rewards = () => {
           <RewardsCard
             key={reward.id}
             reward={reward}
-            userPoints={user?.points}
+            userPoints={userPoints}
+            setUserPoints={setUserPoints}
+            setFilteredRewards={setFilteredRewards}
           />
         ))}
       </div>
