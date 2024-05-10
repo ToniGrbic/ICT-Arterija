@@ -17,7 +17,6 @@ export default function ConfirmPhotoPopup({
     setPreviewSrc(null);
     setSelectedFile(null);
   };
-
   const onConfirm = async () => {
     if (!selectedFile) {
       return;
@@ -45,6 +44,9 @@ export default function ConfirmPhotoPopup({
       }
 
       const responseData = await response.json();
+      user.photos_id = responseData.id;
+      cookies.set("user", user, { path: "/" });
+
       setMessage("Profilna slika uspješno promjenjena.");
       setPreviewSrc(null);
 
@@ -65,8 +67,12 @@ export default function ConfirmPhotoPopup({
         </h1>
         <img src={previewSrc} alt="" className={classes.previewImage} />
         <div className={classes.popupButtons}>
-          <button onClick={onConfirm}>Da</button>
-          <button onClick={onCancel}>Ne</button>
+          <button onClick={onConfirm} className={classes.yesButton}>
+            Da
+          </button>
+          <button onClick={onCancel} className={classes.noButton}>
+            Ne
+          </button>
         </div>
         <p>{message}</p>
       </div>

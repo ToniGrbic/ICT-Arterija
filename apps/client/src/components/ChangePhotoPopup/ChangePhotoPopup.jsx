@@ -6,7 +6,8 @@ import Cookies from "universal-cookie";
 import TrashCan from "../../assets/TrashCan.svg";
 import DeletePhotoPopup from "../DeletePhotoPopup/DeletePhotoPopup";
 
-export default function ChangePhotoPopup() {
+// eslint-disable-next-line react/prop-types
+export default function ChangePhotoPopup({ setIsVisible }) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewSrc, setPreviewSrc] = useState(null);
   const fileInputRef = useRef(null);
@@ -29,7 +30,12 @@ export default function ChangePhotoPopup() {
 
   return (
     <div className={classes.changePhotoPage}>
-      <button className={classes.backButton}>{"X"}</button>
+      <button
+        className={classes.backButton}
+        onClick={() => setIsVisible(false)}
+      >
+        {"X"}
+      </button>
       <h1 className={classes.changePhotoHeadline}>
         Promjena fotografije profila
       </h1>

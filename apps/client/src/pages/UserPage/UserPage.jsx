@@ -18,7 +18,7 @@ export default function UserPage() {
   const [data, setData] = useState({ events: [], donations: [] });
   const [profilePhoto, setProfilePhoto] = useState(null);
   const { events, donations } = data;
-  console.log(user);
+  const [changePhotoPopup, setChangePhotoPopup] = useState(false);
 
   useEffect(() => {
     if (user === null || user === undefined) {
@@ -62,6 +62,9 @@ export default function UserPage() {
             src={!profilePhoto ? Profile : profilePhoto}
             alt=""
             className={classes.profilePicture}
+            onClick={() => {
+              setChangePhotoPopup(true);
+            }}
           />
           <img
             src={Settings}
@@ -102,7 +105,9 @@ export default function UserPage() {
           <DonationsHistory donation={verifiedDonations[0]} />
         </div>
         <MenuNavigation />
-        <ChangePhotoPopup />
+        {changePhotoPopup && (
+          <ChangePhotoPopup setIsVisible={setChangePhotoPopup} />
+        )}
       </div>
     )
   );
