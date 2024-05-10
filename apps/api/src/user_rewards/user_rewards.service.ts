@@ -20,7 +20,10 @@ export class UserRewardsService {
   }
 
   findByUser(user_id: number) {
-    return this.prisma.user_rewards.findMany({ where: { user_id } });
+    return this.prisma.user_rewards.findMany({
+      where: { user_id },
+      include: { rewards: true },
+    });
   }
 
   update(id: number, updateUserRewardDto: UpdateUserRewardDto) {
