@@ -10,7 +10,7 @@ In root directory run:
 To open app on port 3000 run:
 ```npm run start```
 
-To make native app:
+To make native app with capacitor:
 ```npx cap sync```
 
 Open project in android studio or xcode for ios:
