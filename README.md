@@ -4,7 +4,7 @@ Arterija is a moblie app prototype for scheduling blood donations to events or h
 ###  Build project
 In root directory run: 
 ```npm i```,
-```npm run build```
+```npm run build``` to build turbo repo project
 
 ### Run project
 To open app on port 3000 run:
